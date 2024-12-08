@@ -11,9 +11,9 @@ const Hero = () => {
                 </div>
             </div>
             <div className="w-full lg:w-1/2 lg:p-8">
-    <div className="flex justify-center">
-        <img src={profilepic} alt="Keshav Sharma" className="max-w-170 " />
-    </div>
+            <div className="flex justify-center">
+  <img src={profilepic} alt="Keshav Sharma" className="max-w-sm" />
+</div>
 </div>
 
         </div>
