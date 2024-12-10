@@ -1,4 +1,4 @@
-import profilepic from "../assets/kevinRushProfile.png"
+import profilepic from "../assets/DSC_0488.png"
 const Hero = () => {
     return <section id="Hero">
         <div className="border-b border-neutral-900 pb-4 lg:mb-35 ml-6 ">
@@ -13,7 +13,8 @@ const Hero = () => {
             </div>
             <div className="w-full lg:w-1/2 lg:p-8">
             <div className="flex justify-center">
-  <img src={profilepic} alt="Keshav Sharma" className="max-w-sm" />
+            <img src={profilepic} alt="Keshav Sharma" className="max-w-md rounded-lg" />
+
 </div>
 </div>
 

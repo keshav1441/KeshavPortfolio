@@ -1,33 +1,13 @@
 const Experience = () => {
     const experiences = [
       {
-        year: "2022-2023",
-        role: "Software Developer",
-        company: "TechCorp",
-        description: "Developed web applications using React and Node.js, focusing on user experience and scalability.",
-        technologies: ["React", "Node.js", "JavaScript", "CSS"]
-      },
-      {
-        year: "2021-2022",
-        role: "Backend Developer",
-        company: "DataSystems",
-        description: "Worked on database management and API development, ensuring high availability and performance.",
-        technologies: ["Python", "PostgreSQL", "Django"]
-      },
-      {
-        year: "2020-2021",
-        role: "Junior Developer",
-        company: "WebSolutions",
-        description: "Assisted in building and maintaining web applications with a focus on frontend development.",
-        technologies: ["HTML", "CSS", "JavaScript"]
-      },
-      {
-        year: "2019-2020",
-        role: "Intern Developer",
-        company: "CodeBase",
-        description: "Assisted in testing and debugging web applications while learning modern web technologies.",
-        technologies: ["JavaScript", "React"]
-      }
+        year: "July-2024 to Sept-2024",
+        role: "Software Development Engineer Intern",
+        company: "Devtech Consulting Services",
+        description: "Designed and implemented user registration in ASP.NET Core with Entity Framework. Managed and optimized MySQL database queries, reducing data retrieval time by 30%. Enhanced the user interface through responsive design and animations using React.js and CSS frameworks.",
+        technologies: ["ASP.NET Core", "Entity Framework", "MySQL", "React.js", "CSS"]
+}
+
     ];
   
     return (<section id="Experience" className="mt-8">

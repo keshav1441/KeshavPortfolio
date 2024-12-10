@@ -1,38 +1,41 @@
 import img1 from "../assets/projects/project-1.jpg";
 import img2 from "../assets/projects/project-2.jpg";
-import img3 from "../assets/projects/project-3.jpg";
 import img4 from "../assets/projects/project-4.jpg";
+import img5 from "../assets/projects/college_olx.jpg";
 
 const Projects = () => {
   const PROJECTS = [
     {
-      title: "E-Commerce Website",
-      image: img1,
-      description:
-        "A fully functional e-commerce website with features like product listing, shopping cart, and user authentication.",
-      technologies: ["HTML", "CSS", "React", "Node.js", "MongoDB"],
-    },
-    {
-      title: "Task Management App",
+      title: "Formify - Form Builder",
       image: img2,
       description:
-        "An application for managing tasks and projects, with features such as task creation, assignment, and progress tracking.",
-      technologies: ["HTML", "CSS", "Angular", "Firebase"],
+        "A drag-and-drop form builder for creating dynamic, customizable forms with real-time preview, built using React, TypeScript, PostgreSQL, Prisma, Dnd-Kit, and Tailwind CSS.",
+      technologies: ["React", "TypeScript", "Dnd-Kit", "PostgreSQL", "Prisma", "Tailwind CSS"],
     },
     {
-      title: "Portfolio Website",
-      image: img3,
-      description:
-        "A personal portfolio website showcasing projects, skills, and contact information.",
-      technologies: ["HTML", "CSS", "React", "Bootstrap"],
-    },
-    {
-      title: "Blogging Platform",
+      title: "AI Financial Advisory",
       image: img4,
       description:
-        "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles.",
-      technologies: ["HTML", "CSS", "Vue.js", "Express", "mySQL"],
+        "An AI-powered financial advisory platform offering spending insights, savings projections, and chatbot-driven advice, leveraging Azure Cognitive Services, OpenAI, and interactive dashboards.",
+      technologies: ["MERN Stack", "Git", "Microsoft Azure OpenAI"],
+      timeline: "Jul 2024 – Present",
     },
+    {
+      title: "College OLX",
+      image: img5,
+      description:
+        "A platform for students to buy and sell goods with features like browsing, secure transactions, and seamless user registration, built using Django and React.js.",
+      technologies: ["Django", "React.js", "Bootstrap"],
+      timeline: "Feb 2024",
+    },
+    {
+      title: "AI Web Scraper",
+      image: img1,
+      description:
+        "A Python-based web scraper using Beautiful Soup to extract, clean, and process data efficiently from multiple websites for analysis and research purposes.",
+      technologies: ["Python", "Beautiful Soup","Selenium"],
+    },
+    
   ];
 
   return (<section id="Project">
