@@ -30,7 +30,7 @@ const Experience = () => {
       }
     ];
   
-    return (
+    return (<section id="Experience" className="mt-8">
       <div className="border-b border-neutral-900 pb-4">
         <h1 className="my-20 text-center text-4xl">Experience</h1>
         {experiences.map((experience, index) => (
@@ -54,7 +54,7 @@ const Experience = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div></section>
     );
   };
   
