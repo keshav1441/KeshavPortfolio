@@ -1,3 +1,4 @@
+import {motion} from "framer-motion"
 const socialLinks = [
     {
       href: 'https://github.com/keshav1441',
@@ -32,7 +33,7 @@ const socialLinks = [
 const Contact=()=>{
     return <section id="Contact" className="section mt-8">
         <div className="container1 lg:grid lg:grid-cols-2 lg:items-stretch">
-            <div className="mb-12 lg:mb-0 lg:flex lg:flex-col">
+            <motion.div whileInView={{x:0,opacity:1}} initial={{x:-100,opacity:0}} transition={{dutation:1}} className="mb-12 lg:mb-0 lg:flex lg:flex-col">
                 <h2 className="ml-4 text-4xl mb-2">
                     Contact me for Collaboration
                 </h2>
@@ -41,7 +42,7 @@ const Contact=()=>{
                 </p>
                 <div className="flex items-center mt-8 ml-8 gap-10">
   {socialLinks.map(({ href, icon }, key) => (
-    <a
+    <motion.a 
       key={key}
       href={href}
       target="_blank"
@@ -49,13 +50,13 @@ const Contact=()=>{
       className="w-14 h-14 grid place-items-center ring-inset ring-2 ring-zinc-50/5 rounded-lg transition-[background-color,color] hover:bg-zinc-50 hover:text-zinc-950 active:bg-zinc-50/80"
     >
       {icon}
-    </a>
+    </motion.a>
   ))}
 </div>
 
 
-            </div>
-            <form
+            </motion.div>
+            <motion.form whileInView={{x:0,opacity:1}} initial={{x:100,opacity:0}} transition={{dutation:1}} 
                 action="https://getform.io/f/bzyypgza"
                 method="post"
                 className="xl:pl-10 2xl:pl-20 ">
@@ -118,7 +119,7 @@ const Contact=()=>{
   </button>
 </div>
 
-            </form>
+            </motion.form>
 
         </div>
 
