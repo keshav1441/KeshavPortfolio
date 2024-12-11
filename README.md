@@ -6,7 +6,6 @@ Welcome to my personal portfolio website! This site showcases my skills, project
 
 - [Technologies Used](#technologies-used)
 - [Features](#features)
-- [License](#license)
 
 ## Technologies Used
 
@@ -25,8 +24,3 @@ This portfolio is built using a combination of the following technologies:
 - **Technology Stack Section**: Icons and descriptions of the main technologies I work with.
 - **Smooth Animations**: Framer Motion is used to create smooth transitions and animations across the site.
 - **Contact Information**: Contact details to get in touch with me for potential collaborations or job opportunities.
-  
-
-## License
-
-This `README.md` file provides a comprehensive overview of your portfolio project, including installation instructions, technologies used, features, and deployment steps. Adjust the sections to better match your project if necessary!
