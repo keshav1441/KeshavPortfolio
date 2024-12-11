@@ -1,11 +1,15 @@
 # Keshav Sharma - Portfolio
 
+
+[Visit Keshav Sharma's Portfolio](https://keshav-portfolio-kt3b.vercel.app/)
+
 Welcome to my personal portfolio website! This site showcases my skills, projects, and experience as a Full-Stack Developer with a focus on Python, AI, and modern web technologies. It includes a collection of my personal and professional projects, the technologies I work with, and my journey in the world of software development.
 
 ## Table of Contents
 
 - [Technologies Used](#technologies-used)
 - [Features](#features)
+- [Deployed Portfolio](#deployed-portfolio)
 
 ## Technologies Used
 
@@ -24,3 +28,8 @@ This portfolio is built using a combination of the following technologies:
 - **Technology Stack Section**: Icons and descriptions of the main technologies I work with.
 - **Smooth Animations**: Framer Motion is used to create smooth transitions and animations across the site.
 - **Contact Information**: Contact details to get in touch with me for potential collaborations or job opportunities.
+
+## Deployed Portfolio
+
+You can view the live version of my portfolio here:
+
