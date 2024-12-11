@@ -81,7 +81,7 @@ const Navbar = () => {
             About
           </a>
           <a
-            href="#Project"
+            href="#Projects"
             className="nav-link block py-2 px-4 rounded-2xl ring-1 ring-inset ring-zinc-100 hover:bg-zinc-300 hover:text-black"
           >
             Projects
