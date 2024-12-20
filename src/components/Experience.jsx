@@ -2,11 +2,19 @@ import { motion } from "framer-motion";
 const Experience = () => {
     const experiences = [
       {
-        year: "July-2024 to Sept-2024",
-        role: "Software Development Engineer Intern",
-        company: "Devtech Consulting Services",
-        description: "Designed and implemented user registration in ASP.NET Core with Entity Framework. Managed and optimized MySQL database queries, reducing data retrieval time by 30%. Enhanced the user interface through responsive design and animations using React.js and CSS frameworks.",
-        technologies: ["ASP.NET Core", "Entity Framework", "MySQL", "React.js", "CSS"]
+        year: "Dec-2024 to Present",
+        role: "Artificial Intelligence Intern",
+        company: "Soven Developers",
+        description: "Developed a medical chatbot using Groq APIs to process medical reports and images. Improved chatbot accuracy by applying NLP techniques for medical terminology. Ensured the chatbot complies with medical regulations and provides accurate, ethical responses.",
+        technologies: ["Groq", "NLP", "TensorFlow", "Python"]
+    },
+    
+{
+  year: "July-2024 to Sept-2024",
+  role: "Software Development Engineer Intern",
+  company: "Devtech Consulting Services",
+  description: "Designed and implemented user registration in ASP.NET Core with Entity Framework. Managed and optimized MySQL database queries, reducing data retrieval time by 30%. Enhanced the user interface through responsive design and animations using React.js and CSS frameworks.",
+  technologies: ["ASP.NET Core", "Entity Framework", "MySQL", "React.js", "CSS"]
 }
 
     ];
