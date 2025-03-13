@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"; // Correct import
-import profilepic from "../assets/DSC_0488.png";
+import profilepic from "../assets/Herophoto.jpg";
 
 const container = (delay) => ({
   hidden: { x: -100, opacity: 0 },
@@ -10,7 +10,7 @@ const container = (delay) => ({
 const Hero = () => {
   return (
     <section id="Hero">
-      <div className="border-b border-neutral-900 pb-4 lg:mb-35 ml-6">
+      <div className="border-b border-neutral-900 pb-4 lg:mb-35 ml-10">
         <div className="flex flex-wrap">
           {/* Left Section */}
           <div className="w-full lg:w-1/2">

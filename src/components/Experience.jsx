@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 const Experience = () => {
     const experiences = [
       {
-        year: "Dec-2024 to Present",
+        year: "Jan-2024 to Present",
         role: "Artificial Intelligence Intern",
         company: "Soven Developers",
         description: "Developed a medical chatbot using Groq APIs to process medical reports and images. Improved chatbot accuracy by applying NLP techniques for medical terminology. Ensured the chatbot complies with medical regulations and provides accurate, ethical responses.",
@@ -10,7 +10,7 @@ const Experience = () => {
     },
     
 {
-  year: "July-2024 to Sept-2024",
+  year: "July-2024 to Sep-2024",
   role: "Software Development Engineer Intern",
   company: "Devtech Consulting Services",
   description: "Designed and implemented user registration in ASP.NET Core with Entity Framework. Managed and optimized MySQL database queries, reducing data retrieval time by 30%. Enhanced the user interface through responsive design and animations using React.js and CSS frameworks.",
