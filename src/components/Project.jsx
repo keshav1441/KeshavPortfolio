@@ -1,7 +1,8 @@
-import img1 from "../assets/projects/project-1.jpg";
+import img1 from "../assets/projects/project-1.png";
 import img2 from "../assets/projects/Formup.png";
-import img4 from "../assets/projects/project-4.jpg";
+import img4 from "../assets/projects/FA[1].png";
 import img5 from "../assets/projects/college_olx.jpg";
+import img6 from "../assets/projects/image.png";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
@@ -22,7 +23,7 @@ const Projects = () => {
     {
       title: "FormUp - Form Builder",
       image: img2,
-      link: "https://github.com/keshav1441/Formify",
+      link: "https://github.com/keshav1441/FormUp",
       description:
         "A drag-and-drop form builder for creating dynamic, customizable forms with real-time preview, built using React, TypeScript, PostgreSQL, Prisma, Dnd-Kit, and Tailwind CSS.",
       technologies: ["Next.js", "TypeScript", "Dnd-Kit", "PostgreSQL", "Prisma", "Tailwind CSS"],
@@ -38,7 +39,7 @@ const Projects = () => {
     {
       title: "A2K Financial Advisory",
       image: img4,
-      link: "https://github.com/why-aditi/Financial-Advisory",
+      link: "https://github.com/keshav1441/Financial-Advisory",
       description:
       "An AI-powered financial advisory platform offering spending insights, savings projections, and chatbot-driven advice, leveraging Azure Cognitive Services, OpenAI, and interactive dashboards.",
       technologies: ["MERN Stack", "Git", "Google Gemini"],
@@ -71,7 +72,7 @@ const Projects = () => {
     },
     {
       title: "Food Chatbot",
-      image: img1,
+      image: img6,
       link: "https://github.com/keshav1441/Food-Chatbot",
       description:
         "The chatbot is fixed in the bottom-left corner of the screen, providing continuous access to users for placing orders, asking questions, and getting information about the restaurant.",
