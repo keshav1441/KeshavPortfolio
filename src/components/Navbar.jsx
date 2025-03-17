@@ -156,42 +156,42 @@ const Navbar = () => {
         <div className="flex flex-col items-center justify-center h-full space-y-10 p-4">
           <a
             href="#Hero"
-            className="text-2xl font-medium text-slate-300 hover:text-white transition-colors"
+            className="nav-link text-2xl font-medium text-slate-300 hover:text-white transition-colors"
             onClick={closeMenu}
           >
             Home
           </a>
           <a
             href="#About_me"
-            className="text-2xl font-medium text-slate-300 hover:text-white transition-colors"
+            className="nav-link text-2xl font-medium text-slate-300 hover:text-white transition-colors"
             onClick={closeMenu}
           >
             About
           </a>
           <a
             href="#Technologies"
-            className="text-2xl font-medium text-slate-300 hover:text-white transition-colors"
+            className="nav-link text-2xl font-medium text-slate-300 hover:text-white transition-colors"
             onClick={closeMenu}
           >
             Skills
           </a>
           <a
             href="#Experience"
-            className="text-2xl font-medium text-slate-300 hover:text-white transition-colors"
+            className="nav-link text-2xl font-medium text-slate-300 hover:text-white transition-colors"
             onClick={closeMenu}
           >
             Experience
           </a>
           <a
             href="#Projects"
-            className="text-2xl font-medium text-slate-300 hover:text-white transition-colors"
+            className="nav-link text-2xl font-medium text-slate-300 hover:text-white transition-colors"
             onClick={closeMenu}
           >
             Projects
           </a>
           <a
             href="#Contact"
-            className="text-2xl font-medium text-slate-300 hover:text-white transition-colors"
+            className="nav-link text-2xl font-medium text-slate-300 hover:text-white transition-colors"
             onClick={closeMenu}
           >
             Contact

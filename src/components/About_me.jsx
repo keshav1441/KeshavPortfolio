@@ -1,14 +1,14 @@
-import aboutImg from "../assets/about.png";
+import aboutImg from "../assets/aboutkeshav.jpg";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faServer, faRobot, faDatabase } from '@fortawesome/free-solid-svg-icons';
 
 // The data string split into two paragraphs for readability
-const data1 = `I'm pursuing my Bachelor's in Computer Science Engineering at the Indian Institute of Information Technology, Pune. As a passionate Full Stack Developer with expertise in Python and AI, I've developed strong skills in front-end and back-end technologies such as React.js, Node.js, FastAPI, MySQL, and MongoDB.`;
+const data1 = "I'm pursuing my Bachelor's in Computer Science Engineering at the Indian Institute of Information Technology, Pune. As a passionate Full Stack Developer with expertise in Python and AI, I've developed strong skills in front-end and back-end technologies such as React.js, Node.js, FastAPI, MySQL, and MongoDB.";
 
-const data2 = `Over the past 3 years, I've focused on building scalable, high-performance web applications and leveraging AI to deliver cutting-edge features. I specialize in creating efficient back-end systems with FastAPI and am eager to embrace new challenges in technology.`;
+const data2 = "Over the past 3 years, I've focused on building scalable, high-performance web applications and leveraging AI to deliver cutting-edge features. I specialize in creating efficient back-end systems with FastAPI and am eager to embrace new challenges in technology.";
 
-const data3 = `Alongside my web development experience, I'm deeply involved in machine learning, having worked with Python frameworks like TensorFlow and PyTorch to implement data-driven solutions. I continually explore new tools and technologies to stay ahead in the field.`;
+const data3 = "Alongside my web development experience, I'm deeply involved in machine learning, having worked with Python frameworks like TensorFlow and PyTorch to implement data-driven solutions. I continually explore new tools and technologies to stay ahead in the field.";
 
 // Key skills/interests
 const keyAreas = [
@@ -54,20 +54,20 @@ const About = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left section - Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+          {/* Left section - Image (now 2 columns instead of 1) */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="flex justify-center lg:justify-end"
+            className="flex justify-center lg:justify-end lg:col-span-2"
           >
-            <div className="relative">
+            <div className="relative max-w-xs mx-auto">
               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl blur opacity-30"></div>
               <div className="relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-800 p-2">
                 <img
-                  className="rounded-xl max-w-sm w-full h-auto"
+                  className="rounded-xl w-full h-auto"
                   src={aboutImg}
                   alt="Keshav Sharma"
                 />
@@ -75,13 +75,13 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right section - Description */}
+          {/* Right section - Description (now 3 columns instead of 1) */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-6 lg:col-span-3"
           >
             <div className="space-y-4">
               <p className="text-lg text-slate-300">{data1}</p>
@@ -106,7 +106,7 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-20"
+          className="mt-24"
         >
           <h3 className="text-2xl font-bold text-center mb-12">
             Key <span className="gradient-text">Areas</span>

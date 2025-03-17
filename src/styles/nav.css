@@ -1,18 +1,37 @@
 /* Default gap for larger screens */
 .navbar-links {
-    gap: 1.25rem; /* Equivalent to md:gap-5 */
+  gap: 1.25rem; /* Equivalent to md:gap-5 */
+}
+
+/* Adjust gap for smaller screens */
+@media (max-width: 768px) {
+  .navbar-links {
+    gap: 0.75rem; /* Smaller gap for compact spacing */
   }
-  
-  /* Adjust gap for smaller screens */
-  @media (max-width: 768px) {
-    .navbar-links {
-      gap: 0.75rem; /* Smaller gap for compact spacing */
-    }
+}
+
+@media (max-width: 480px) {
+  .navbar-links {
+    gap: 0.5rem; /* Further reduce gap for very small screens */
   }
-  
-  @media (max-width: 480px) {
-    .navbar-links {
-      gap: 0.5rem; /* Further reduce gap for very small screens */
-    }
-  }
-  
+}
+
+/* Hover underline effect for nav links */
+.nav-link {
+position: relative;
+}
+
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -4px;
+left: 0;
+background: linear-gradient(to right, #10b981, #0d9488); /* emerald-500 to teal-600 */
+transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+width: 100%;
+}

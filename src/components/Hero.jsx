@@ -37,8 +37,7 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-slate-300 text-lg max-w-xl"
             >
-              I build exceptional digital experiences with modern technologies.
-              Specializing in Python, React, and AI solutions that solve real-world problems.
+              I am a passionate Full Stack Developer with expertise in Python, AI, and FastAPI. With 3+ years of experience, I build scalable web applications using React.js, Node.js, MySQL, and MongoDB, leveraging AI for innovative solutions. I specialize in crafting high-performance back-end systems and thrive on tackling new tech challenges.
             </motion.p>
 
             <motion.div
