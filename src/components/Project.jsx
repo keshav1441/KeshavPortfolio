@@ -3,7 +3,7 @@ import img2 from "../assets/projects/Formup.png";
 import img4 from "../assets/projects/project-4.jpg";
 import img5 from "../assets/projects/college_olx.jpg";
 import { motion } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 const itemVariants = {
   hidden: { y: 50, opacity: 0 },
@@ -80,18 +80,24 @@ const Projects = () => {
   ];
 
   return (
-    <section id="Projects">
-      <div className="border-b border-neutral-900 pb-12 mx-6">
-        <motion.h1 
-          whileInView={{y:0, opacity:1}} 
-          initial={{y:-100, opacity:0}} 
-          transition={{duration:1}}  
-          className="my-20 text-center text-4xl"
+    <section id="Projects" className="pt-20">
+      <div className="border-b border-slate-800 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-16"
         >
-          Projects
-        </motion.h1>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            My <span className="gradient-text">Projects</span>
+          </h2>
+          <p className="text-slate-400 text-center max-w-2xl mx-auto">
+            Showcasing my work and technical expertise
+          </p>
+        </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {PROJECTS.map((project, index) => (
             <motion.div 
               key={index}
@@ -100,37 +106,38 @@ const Projects = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
-              className="bg-neutral-800 rounded-lg overflow-hidden shadow-lg flex flex-col h-full"
+              className="bg-slate-800/50 rounded-xl overflow-hidden shadow-lg flex flex-col h-full border border-slate-700 hover:border-teal-500/30 transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-48 overflow-hidden group">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
               </div>
               
               <div className="p-6 flex flex-col flex-grow">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-semibold text-lg">{project.title}</h3>
+                  <h3 className="font-semibold text-lg text-white">{project.title}</h3>
                   <a 
                     href={project.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-purple-500 hover:text-purple-700 transition-colors"
+                    className="text-teal-400 hover:text-teal-300 transition-colors"
                     aria-label={`GitHub repository for ${project.title}`}
                   >
                     <FaGithub size={20} />
                   </a>
                 </div>
                 
-                <p className="text-neutral-400 mb-4 flex-grow">{project.description}</p>
+                <p className="text-slate-300 mb-4 flex-grow text-sm">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.technologies.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="rounded bg-neutral-900 px-2 py-1 text-xs font-medium text-purple-500"
+                      className="px-2 py-1 text-xs font-medium rounded-full bg-slate-700/70 text-teal-400"
                     >
                       {tech}
                     </span>
@@ -140,6 +147,23 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="flex justify-center mt-12"
+        >
+          <a 
+            href="https://github.com/keshav1441" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 btn-secondary"
+          >
+            <FaGithub /> View More on GitHub <FaExternalLinkAlt size={12} />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

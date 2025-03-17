@@ -1,70 +1,109 @@
-import { motion } from "framer-motion"; // Correct import
+import { motion } from "framer-motion";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
 import profilepic from "../assets/Herophoto.jpg";
-
-const container = (delay) => ({
-  hidden: { x: -100, opacity: 0 },
-  visible: { x: 0, opacity: 1, transition: { duration: 0.5, delay: delay } },
-  visible1: { x: 10, opacity: 1, transition: { duration: 0.5, delay: delay } },
-});
 
 const Hero = () => {
   return (
-    <section id="Hero">
-      <div className="border-b border-neutral-900 pb-4 lg:mb-35 ml-10">
-        <div className="flex flex-wrap">
-          {/* Left Section */}
-          <div className="w-full lg:w-1/2">
-            <div className="flex flex-col items-center lg:items-start">
-              <motion.h1
-                variants={container(0)}
-                initial="hidden"
-                animate="visible1"
-                className="pb-10 text-6xl font-thin tracking-tight lg:mt-16 lg:text-8xl"
-              >
+    <section id="Hero" className="pt-32 pb-16 md:pt-40 md:pb-24">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Left Section - Text Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="order-2 lg:order-1"
+        >
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              <h2 className="text-sm sm:text-base text-slate-400 font-medium mb-2">
+                Hello, I&apos;m
+              </h2>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4">
                 Keshav Sharma
-              </motion.h1>
-              <motion.span
-                variants={container(0.5)}
-                initial="hidden"
-                animate="visible1"
-                className="bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-4xl tracking-tight text-transparent"
-              >
-                Full-Stack Developer | Python & AI Expert
-              </motion.span>
-              <motion.p
-                variants={container(1)}
-                initial="hidden"
-                animate="visible1"
-                className="my-2 max-w-xl py-6 font-light"
-              >
-                I am a passionate Full Stack Developer with expertise in Python
-                and AI. Over the past 3 years, I’ve developed strong skills in
-                front-end and back-end technologies like React.js, Node.js,
-                FastAPI, MySQL, and MongoDB, enabling me to build scalable,
-                high-performance web applications. I focus on creating
-                innovative solutions that drive growth and leverage AI to
-                deliver cutting-edge features. With expertise in FastAPI, I
-                craft efficient back-end systems that support modern web
-                architectures and am always eager to embrace new challenges in
-                technology.
-              </motion.p>
-            </div>
-          </div>
+              </h1>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl gradient-text font-medium">
+                Full-Stack Developer & AI Expert
+              </h2>
+            </motion.div>
 
-          {/* Right Section */}
-          <div className="w-full lg:w-1/2 lg:p-8">
-            <div className="flex justify-center">
-              <motion.img
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-slate-300 text-lg max-w-xl"
+            >
+              I build exceptional digital experiences with modern technologies.
+              Specializing in Python, React, and AI solutions that solve real-world problems.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="flex flex-wrap gap-4 pt-4"
+            >
+              <a
+                href="#Projects"
+                className="btn-primary"
+              >
+                View My Work
+              </a>
+              <a
+                href="https://drive.google.com/file/d/1Qc14_pMI-JwgZhiwqXoFmYSyRV33UdMS/view?usp=sharing" 
+                download
+                className="btn-secondary flex items-center gap-2"
+              >
+                <FontAwesomeIcon icon={faFileArrowDown} /> Resume
+              </a>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Right Section - Profile Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="order-1 lg:order-2 flex justify-center lg:justify-end"
+        >
+          <div className="relative">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl blur opacity-70"></div>
+            <div className="relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-800 p-2">
+              <img
                 src={profilepic}
                 alt="Keshav Sharma"
-                className="max-w-md rounded-lg"
-                initial={{ x: 100, opacity: 0} }
-                animate={{x: 0, opacity: 1, transition: { duration: 0.5, delay: 1.3 } }}
+                className="w-full max-w-md h-auto rounded-xl object-cover"
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
+
+      {/* Scroll Down Indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="flex justify-center mt-16"
+      >
+        <a
+          href="#About_me"
+          className="flex flex-col items-center text-slate-400 hover:text-teal-400 transition-colors duration-300"
+        >
+          <span className="text-sm mb-2">Scroll Down</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+          >
+            <FontAwesomeIcon icon={faArrowDown} />
+          </motion.div>
+        </a>
+      </motion.div>
     </section>
   );
 };

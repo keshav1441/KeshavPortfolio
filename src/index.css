@@ -2,6 +2,91 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-:root{
-    font-family: "Inter",sans-serif;
+
+:root {
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+  --primary-color: #10b981; /* Emerald 500 */
+  --primary-dark: #047857; /* Emerald 700 */
+  --primary-light: #6ee7b7; /* Emerald 300 */
+  --secondary-color: #0d9488; /* Teal 600 */
+  --secondary-dark: #0f766e; /* Teal 700 */
+  --secondary-light: #5eead4; /* Teal 300 */
+  --bg-dark: #0f172a; /* Slate 900 */
+  --bg-light: #1e293b; /* Slate 800 */
+  --text-light: #f1f5f9; /* Slate 100 */
+  --text-muted: #94a3b8; /* Slate 400 */
+}
+
+html {
+  scroll-padding-top: 80px; /* Offset for fixed navbar */
+}
+
+body {
+  @apply bg-slate-900 text-slate-200;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-dark);
+  @apply rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Section spacing */
+section {
+  @apply py-16 md:py-24;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  @apply bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 bg-clip-text text-transparent;
+}
+
+/* Animated underline for links */
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  @apply bg-gradient-to-r from-emerald-500 to-teal-600;
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-medium rounded-lg hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-transparent text-white font-medium rounded-lg border border-slate-700 hover:border-slate-500 transition-all duration-300;
+}
+
+/* Card styles */
+.card {
+  @apply bg-slate-800/50 border border-slate-700 rounded-xl p-6 hover:border-slate-600 transition-all duration-300;
 }

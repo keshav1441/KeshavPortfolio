@@ -31,41 +31,88 @@ const socialLinks = [
   ];
 
 const Contact=()=>{
-    return <section id="Contact" className="section mt-8">
-        <div className="container1 lg:grid lg:grid-cols-2 lg:items-stretch">
-            <motion.div whileInView={{x:0,opacity:1}} initial={{x:-100,opacity:0}} transition={{dutation:1}} className="mb-12 lg:mb-0 lg:flex lg:flex-col">
-                <h2 className="ml-4 text-4xl mb-2">
-                    Contact me for Collaboration
+    return <section id="Contact" className="pt-20">
+        <div className="border-b border-slate-800 pb-16">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="mb-16"
+            >
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+                    Get in <span className="gradient-text">Touch</span>
                 </h2>
-                <p className="text-zinc-400 mt-3 mb-8 ml-4 text-xl">
-                    Reach out to discuss your project needs and start collaborating on something amazing!
+                <p className="text-slate-400 text-center max-w-2xl mx-auto">
+                    Reach out for collaborations or just to say hello
                 </p>
-                <div className="flex items-center mt-8 ml-8 gap-10">
-  {socialLinks.map(({ href, icon }, key) => (
-    <motion.a 
-      key={key}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-14 h-14 grid place-items-center ring-inset ring-2 ring-zinc-50/5 rounded-lg transition-[background-color,color] hover:bg-zinc-50 hover:text-zinc-950 active:bg-zinc-50/80"
-    >
-      {icon}
-    </motion.a>
-  ))}
-</div>
-
-
             </motion.div>
-            <motion.form whileInView={{x:0,opacity:1}} initial={{x:100,opacity:0}} transition={{dutation:1}} 
-                action="https://getform.io/f/bzyypgza"
-                method="post"
-                className="xl:pl-10 2xl:pl-20 ">
-                    <div className="md:grid md:items-center md-grid-cols-2 md:gap-2">
-                        <div className="mb-4">
+
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+                {/* Left Column - Contact Info */}
+                <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.7 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col justify-between"
+                >
+                    <div>
+                        <h3 className="text-2xl font-bold mb-6">
+                            Let&apos;s work together
+                        </h3>
+                        <p className="text-slate-300 mb-8 max-w-md">
+                            Reach out to discuss your project needs and start collaborating on something amazing! I&apos;m always open to new opportunities and challenges.
+                        </p>
+                        
+                        <div className="flex flex-wrap gap-4 mb-12">
+                            {socialLinks.map(({ href, icon, alt }, index) => (
+                                <motion.a
+                                    key={index}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-12 h-12 flex items-center justify-center rounded-lg bg-slate-800 text-slate-300 hover:text-teal-400 hover:border-teal-400 transition-colors border border-slate-700"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    aria-label={alt}
+                                >
+                                    {icon}
+                                </motion.a>
+                            ))}
+                        </div>
+                    </div>
+                    
+                    <div className="hidden lg:block">
+                        <div className="relative">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-teal-600/20 rounded-lg blur-lg"></div>
+                            <div className="relative bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+                                <p className="text-slate-300 italic">
+                                    &quot;I&apos;m passionate about creating innovative solutions that make a difference. Let&apos;s build something amazing together!&quot;
+                                </p>
+                                <p className="text-right text-teal-400 mt-4">- Keshav Sharma</p>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+                
+                {/* Right Column - Contact Form */}
+                <motion.form
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.7 }}
+                    viewport={{ once: true }}
+                    action="https://getform.io/f/bzyypgza"
+                    method="post"
+                    className="bg-slate-800/30 p-8 rounded-xl border border-slate-700"
+                >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
                             <label
                                 htmlFor="name"
-                                className="block text-zinc-200 text-m font-normal mb-2">
-                                    Name
+                                className="block text-slate-300 text-sm font-medium mb-2"
+                            >
+                                Name
                             </label>
                             <input
                                 type="text"
@@ -73,16 +120,17 @@ const Contact=()=>{
                                 name="name"
                                 autoComplete="name"
                                 required
-                                className="block outline-none w-full px-3 py-3 text-sm bg-zinc-800 rounded-xl ring-1 ring-inset ring-transparent transition-shadow hover:ring-zinc-50/5 focus:ring-zinc-400 focus:ring-2"
-                                placeholder="Enter your name"
+                                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-slate-200"
+                                placeholder="Your name"
                             />
                         </div>
-
-                        <div className="mb-4">
+                        
+                        <div>
                             <label
                                 htmlFor="email"
-                                className="block text-zinc-200 text-m font-normal mb-2">
-                                    Email
+                                className="block text-slate-300 text-sm font-medium mb-2"
+                            >
+                                Email
                             </label>
                             <input
                                 type="email"
@@ -90,40 +138,40 @@ const Contact=()=>{
                                 name="email"
                                 autoComplete="email"
                                 required
-                                className="block outline-none w-full px-3 py-3 text-sm bg-zinc-800 rounded-xl ring-1 ring-inset ring-transparent transition-shadow hover:ring-zinc-50/5 focus:ring-zinc-400 focus:ring-2"
-                                placeholder="Enter your Email"
+                                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-slate-200"
+                                placeholder="Your email"
                             />
                         </div>
                     </div>
-
-                    <div className="mb-4 ">
+                    
+                    <div className="mb-6">
                         <label
                             htmlFor="message"
-                            className="block text-zinc-200 text-m font-normal mb-2">
+                            className="block text-slate-300 text-sm font-medium mb-2"
+                        >
                                 Message
                         </label>
                         <textarea
-                            name="message"
                             id="message"
+                            name="message"
+                            rows="5"
                             required
-                            placeholder="Enter your message"
-                            className="block outline-none w-full px-3 py-3 text-sm bg-zinc-800 rounded-xl ring-1 ring-inset ring-transparent transition-shadow hover:ring-zinc-50/5 focus:ring-zinc-400 focus:ring-2 resize-y min-h-32 max-h-80">
-                        </textarea>
+                            className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-slate-200 resize-y"
+                            placeholder="Your message"
+                        ></textarea>
                     </div>
-                    <div className="flex justify-center">
-  <button
-    type="submit"
-    className="max-w-max h-9 flex items-center gap-2 px-4 rounded-xl font-medium text-sm ring-1 ring-zinc-50/5 ring-inset transition-colors bg-zinc-100 text-zinc-950 hover:bg-purple-300 [&]:max-w-full w-full justify-center mb-4"
-  >
-    Submit
-  </button>
-</div>
-
-            </motion.form>
-
+                    
+                    <div>
+                        <button
+                            type="submit"
+                            className="btn-primary w-full"
+                        >
+                                Send Message
+                        </button>
+                    </div>
+                </motion.form>
+            </div>
         </div>
-
-        
     </section>
 }
 

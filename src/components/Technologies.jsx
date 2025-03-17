@@ -1,131 +1,143 @@
 import { RiReactjsLine } from 'react-icons/ri';
-import { SiMongodb } from 'react-icons/si';
-import { FaNodeJs } from 'react-icons/fa';
-import { FaJava } from 'react-icons/fa';
-import { SiFastapi } from 'react-icons/si';
-import { FaPython } from 'react-icons/fa';
-import { SiPostgresql } from 'react-icons/si';
-import { SiMysql } from 'react-icons/si';
-import { SiTensorflow } from 'react-icons/si';
+import { SiMongodb, SiFastapi, SiPostgresql, SiMysql, SiTensorflow } from 'react-icons/si';
+import { FaNodeJs, FaJava, FaPython } from 'react-icons/fa';
 import { motion } from "framer-motion";
 
 const iconVariant = (duration) => ({
-  initial: { y: -10 },
+  initial: { y: -10, opacity: 0 },
   animate: {
     y: [10, -10],
+    opacity: 1,
     transition: {
-      duration: duration,
-      ease: "linear",
-      repeat: Infinity,
-      repeatType: "reverse",
+      y: {
+        duration: duration,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatType: "reverse",
+      },
+      opacity: {
+        duration: 0.5,
+      }
     },
   },
 });
 
+// Technology data with consistent styling
+const technologies = [
+  {
+    name: "Python",
+    icon: FaPython,
+    color: "text-yellow-500",
+    duration: 1.0
+  },
+  {
+    name: "Java",
+    icon: FaJava,
+    color: "text-orange-600",
+    duration: 1.2
+  },
+  {
+    name: "React.js",
+    icon: RiReactjsLine,
+    color: "text-cyan-400",
+    duration: 1.4
+  },
+  {
+    name: "Node.js",
+    icon: FaNodeJs,
+    color: "text-green-600",
+    duration: 1.6
+  },
+  {
+    name: "FastAPI",
+    icon: SiFastapi,
+    color: "text-teal-500",
+    duration: 1.8
+  },
+  {
+    name: "TensorFlow",
+    icon: SiTensorflow,
+    color: "text-orange-500",
+    duration: 1.0
+  },
+  {
+    name: "MongoDB",
+    icon: SiMongodb,
+    color: "text-green-500",
+    duration: 1.2
+  },
+  {
+    name: "PostgreSQL",
+    icon: SiPostgresql,
+    color: "text-blue-600",
+    duration: 1.4
+  },
+  {
+    name: "MySQL",
+    icon: SiMysql,
+    color: "text-blue-500",
+    duration: 1.6
+  }
+];
+
 const Technologies = () => {
   return (
-    <section id="Technologies">
-      <div className="border-b border-neutral-800 pb-24">
-        <motion.h1  whileInView={{y:0,opacity:1}} initial={{y:-100,opacity:0}} transition={{dutation:1}} className="my-20 text-center text-4xl text-white">Technologies:</motion.h1>
-        <motion.div  whileInView={{x:0,opacity:1}} initial={{x:-100,opacity:0}} transition={{dutation:1}} className="flex flex-wrap items-center justify-center gap-6">
-          {/* Python */}
-          <motion.div
-            variants={iconVariant(1)}
-            initial="initial"
-            animate="animate"
-            className="flex flex-col items-center rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <FaPython size={50} className="text-7xl text-yellow-500" aria-label="Python" />
-            <p className="mt-2 text-center text-sm text-white">Python</p>
-          </motion.div>
+    <section id="Technologies" className="pt-20">
+      <div className="border-b border-slate-800 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            My <span className="gradient-text">Skills</span>
+          </h2>
+          <p className="text-slate-400 text-center max-w-2xl mx-auto">
+            Technologies and tools I work with
+          </p>
+        </motion.div>
 
-          {/* Java */}
-          <motion.div
-            variants={iconVariant(1.2)}
-            initial="initial"
-            animate="animate"
-            className="flex flex-col items-center rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <FaJava size={50} className="text-7xl text-orange-600" aria-label="Java" />
-            <p className="mt-2 text-center text-sm text-white">Java</p>
-          </motion.div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+          {technologies.map((tech, index) => (
+            <motion.div
+              key={index}
+              variants={iconVariant(tech.duration)}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              className="flex flex-col items-center justify-center bg-slate-800/50 rounded-xl border border-slate-700 p-6 hover:border-teal-500/50 transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10"
+            >
+              <tech.icon size={50} className={`text-5xl ${tech.color}`} aria-label={tech.name} />
+              <p className="mt-4 text-center text-sm font-medium text-white">{tech.name}</p>
+            </motion.div>
+          ))}
+        </div>
 
-          {/* React.js */}
-          <motion.div
-            variants={iconVariant(1.4)}
-            initial="initial"
-            animate="animate"
-            className="flex flex-col items-center rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <RiReactjsLine size={50} className="text-7xl text-cyan-400" aria-label="React.js" />
-            <p className="mt-2 text-center text-sm text-white">React.js</p>
-          </motion.div>
-
-          {/* Node.js */}
-          <motion.div
-            variants={iconVariant(1.6)}
-            initial="initial"
-            animate="animate"
-            className="flex flex-col items-center rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <FaNodeJs size={50} className="text-7xl text-green-600" aria-label="Node.js" />
-            <p className="mt-2 text-center text-sm text-white">Node.js</p>
-          </motion.div>
-
-          {/* FastAPI */}
-          <motion.div
-            variants={iconVariant(1.8)}
-            initial="initial"
-            animate="animate"
-            className="flex flex-col items-center rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <SiFastapi size={50} className="text-7xl text-green-500" aria-label="FastAPI" />
-            <p className="mt-2 text-center text-sm text-white">FastAPI</p>
-          </motion.div>
-
-          {/* TensorFlow */}
-          <motion.div
-            variants={iconVariant(1)}
-            initial="initial"
-            animate="animate"
-            className="flex flex-col items-center rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <SiTensorflow size={50} className="text-7xl text-orange-500" aria-label="TensorFlow" />
-            <p className="mt-2 text-center text-sm text-white">TensorFlow</p>
-          </motion.div>
-
-          {/* MongoDB */}
-          <motion.div
-            variants={iconVariant(1.2)}
-            initial="initial"
-            animate="animate"
-            className="flex flex-col items-center rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <SiMongodb size={50} className="text-7xl text-green-500" aria-label="MongoDB" />
-            <p className="mt-2 text-center text-sm text-white">MongoDB</p>
-          </motion.div>
-
-          {/* PostgreSQL */}
-          <motion.div
-            variants={iconVariant(1.4)}
-            initial="initial"
-            animate="animate"
-            className="flex flex-col items-center rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <SiPostgresql size={50} className="text-7xl text-blue-600" aria-label="PostgreSQL" />
-            <p className="mt-2 text-center text-sm text-white">PostgreSQL</p>
-          </motion.div>
-
-          {/* MySQL */}
-          <motion.div
-            variants={iconVariant(1.6)}
-            initial="initial"
-            animate="animate"
-            className="flex flex-col items-center rounded-2xl border-4 border-neutral-800 p-4"
-          >
-            <SiMysql size={50} className="text-7xl text-blue-500" aria-label="MySQL" />
-            <p className="mt-2 text-center text-sm text-white">MySQL</p>
-          </motion.div>
+        {/* Additional skills section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <h3 className="text-xl font-semibold mb-6">Additional Skills</h3>
+          <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
+            {["HTML/CSS", "Tailwind CSS", "Git", "Docker", "AWS", "Redux", "TypeScript", "PyTorch", "Express.js", "REST API"].map((skill, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="px-4 py-2 bg-slate-800 text-sm rounded-full border border-slate-700 text-slate-300"
+              >
+                {skill}
+              </motion.span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
