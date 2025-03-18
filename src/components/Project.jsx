@@ -3,6 +3,7 @@ import img2 from "../assets/projects/Formup.png";
 import img4 from "../assets/projects/FA[1].png";
 import img5 from "../assets/projects/college_olx.jpg";
 import img6 from "../assets/projects/image.png";
+import img7 from "../assets/projects/planit.png";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
@@ -56,7 +57,7 @@ const Projects = () => {
     },
     {
       title: "PlanIt",
-      image: img1,
+      image: img7,
       link: "https://github.com/keshav1441/Collaborative-Task-Management-System",
       description:
         "A full-stack collaborative task management platform with role-based access control.",
