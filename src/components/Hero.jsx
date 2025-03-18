@@ -53,7 +53,7 @@ const Hero = () => {
                 View My Work
               </a>
               <a
-                href="https://drive.google.com/file/d/1Qc14_pMI-JwgZhiwqXoFmYSyRV33UdMS/view?usp=sharing" 
+                href="https://drive.google.com/file/d/1JbqfE1VtsduXtnd-OWd0YWmvpjVFvBOO/view?usp=sharing" 
                 download
                 className="btn-secondary flex items-center gap-2"
               >

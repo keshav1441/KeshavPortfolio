@@ -4,6 +4,8 @@ import img4 from "../assets/projects/FA[1].png";
 import img5 from "../assets/projects/college_olx.jpg";
 import img6 from "../assets/projects/image.png";
 import img7 from "../assets/projects/planit.png";
+import img8 from "../assets/projects/movierecommender.jpg";
+import img9 from "../assets/projects/autodriving.jpg";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
@@ -30,14 +32,6 @@ const Projects = () => {
       technologies: ["Next.js", "TypeScript", "Dnd-Kit", "PostgreSQL", "Prisma", "Tailwind CSS"],
     },
     {
-      title: "Diabetic Retinopathy Detection",
-      image: img1,
-      link: "https://github.com/why-aditi/Diabetic-Retinopathy",
-      description:
-        "Diabetic Retinopathy Detection: A deep learning approach utilizing DenseNet-201 architecture to classify retinal images with 80% accuracy.",
-      technologies: ["Python", "Tensorflow", "Pandas","Numpy"],
-    },
-    {
       title: "A2K Financial Advisory",
       image: img4,
       link: "https://github.com/keshav1441/Financial-Advisory",
@@ -56,20 +50,37 @@ const Projects = () => {
       timeline: "Feb 2024",
     },
     {
-      title: "PlanIt",
-      image: img7,
-      link: "https://github.com/keshav1441/Collaborative-Task-Management-System",
-      description:
-        "A full-stack collaborative task management platform with role-based access control.",
-      technologies: ["MERN Stack", "Git"],
-    },
-    {
       title: "Movie Recommendation System",
-      image: img1,
+      image: img8,
       link: "https://github.com/keshav1441/Personalized-movie-recommendation-system",
       description:
         "A collaborative filtering-based movie recommendation system. It predicts movie ratings for users and recommends top-rated movies based on user similarities.",
       technologies: ["C++", "Git"],
+    },
+    {
+      title: "Diabetic Retinopathy Detection",
+      image: img1,
+      link: "https://github.com/keshav1441/Diabetic-Retinopathy",
+      description:
+        "Diabetic Retinopathy Detection: A deep learning approach utilizing DenseNet-201 architecture to classify retinal images with 82% accuracy.",
+      technologies: ["Python", "Tensorflow", "Pandas", "Numpy"],
+    },
+    {
+      title:
+        "Semantic Object Segmentation for Autonomous Vehicles in Urban Traffic Scenes",
+      image: img9,
+      link: "https://www.kaggle.com/code/aditishere/btp-test",
+      description:
+        "Using U-Net architecture to achieve 76% accuracy in identifying and classifying critical objects in complex traffic scenes.",
+      technologies: ["Python", "Pytorch", "Pandas","Numpy"],
+    },
+    {
+      title: "PlanIt",
+      image: img7,
+      link: "https://github.com/keshav1441/PlanIt",
+      description:
+        "A full-stack collaborative task management platform with role-based access control.",
+      technologies: ["MERN Stack", "Git"],
     },
     {
       title: "Food Chatbot",
