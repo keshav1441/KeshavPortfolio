@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const Experience = () => {
   const experiences = [
     {
-      year: "Jan-2024 to Present",
+      year: "Dec-2024 to Mar-2025",
       role: "Artificial Intelligence Intern",
       company: "Soven Developers",
       description: "Developed a medical chatbot using Groq APIs to process medical reports and images. Improved chatbot accuracy by applying NLP techniques for medical terminology. Ensured the chatbot complies with medical regulations and provides accurate, ethical responses.",
