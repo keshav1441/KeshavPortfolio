@@ -6,6 +6,7 @@ import img6 from "../assets/projects/image.png";
 import img7 from "../assets/projects/planit.png";
 import img8 from "../assets/projects/movierecommender.jpg";
 import img9 from "../assets/projects/autodriving.jpg";
+import img10 from "../assets/projects/PDF-chat-assistant.png";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
@@ -41,13 +42,30 @@ const Projects = () => {
       timeline: "Jul 2024 – Present",
     },
     {
-      title: "College OLX",
-      image: img5,
-      link: "https://github.com/keshav1441/College-olx",
+      title: "RAG PDF Chat Assistant",
+      image: img10, 
+      link: "https://github.com/keshav1441/RAG-PDF-chat-assistant",
       description:
-      "A platform for students to buy and sell goods with features like browsing, secure transactions, and seamless user registration, built using Django and React.js.",
-      technologies: ["Django", "React.js", "Bootstrap"],
-      timeline: "Feb 2024",
+        "A file-based chatbot built using Retrieval-Augmented Generation (RAG), allowing users to upload PDFs and interact with their content. Combines a FastAPI backend with a React frontend, powered by LangChain and Google Gemini.",
+      technologies: ["FastAPI", "React", "LangChain", "Google Gemini"],
+      timeline: "Apr 2025",
+    },    
+    {
+      title: "PlanIt",
+      image: img7,
+      link: "https://github.com/keshav1441/PlanIt",
+      description:
+        "A full-stack collaborative task management platform with role-based access control, enabling teams to create, assign, and track tasks in real-time. Features include user authentication, team dashboards, priority tagging, and progress tracking.",
+      technologies: ["MERN Stack", "Git"],
+    },
+    {
+      title:
+        "Semantic Object Segmentation for Autonomous Vehicles in Urban Traffic Scenes",
+      image: img9,
+      link: "https://www.kaggle.com/code/aditishere/btp-test",
+      description:
+        "Using U-Net architecture to achieve 76% accuracy in identifying and classifying critical objects in complex traffic scenes.",
+      technologies: ["Python", "Pytorch", "Pandas","Numpy"],
     },
     {
       title: "Movie Recommendation System",
@@ -64,23 +82,15 @@ const Projects = () => {
       description:
         "Diabetic Retinopathy Detection: A deep learning approach utilizing DenseNet-201 architecture to classify retinal images with 82% accuracy.",
       technologies: ["Python", "Tensorflow", "Pandas", "Numpy"],
-    },
+    },     
     {
-      title:
-        "Semantic Object Segmentation for Autonomous Vehicles in Urban Traffic Scenes",
-      image: img9,
-      link: "https://www.kaggle.com/code/aditishere/btp-test",
+      title: "College OLX",
+      image: img5,
+      link: "https://github.com/keshav1441/College-olx",
       description:
-        "Using U-Net architecture to achieve 76% accuracy in identifying and classifying critical objects in complex traffic scenes.",
-      technologies: ["Python", "Pytorch", "Pandas","Numpy"],
-    },
-    {
-      title: "PlanIt",
-      image: img7,
-      link: "https://github.com/keshav1441/PlanIt",
-      description:
-        "A full-stack collaborative task management platform with role-based access control.",
-      technologies: ["MERN Stack", "Git"],
+      "A platform for students to buy and sell goods with features like browsing, secure transactions, and seamless user registration, built using Django and React.js.",
+      technologies: ["Django", "React.js", "Bootstrap"],
+      timeline: "Feb 2024",
     },
     {
       title: "Food Chatbot",
