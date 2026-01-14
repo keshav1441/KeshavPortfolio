@@ -3,6 +3,13 @@ import { motion } from "framer-motion";
 const Experience = () => {
   const experiences = [
     {
+      year: "Jun 2025 – Present",
+      role: "Software Engineer Intern",
+      company: "AI Assistant, Pune, Maharashtra",
+      description: "Integrated AI agents with Salesforce and Zoho CRM for seamless data sync and lead management. Built a scalable job listing platform aggregating opportunities from 1,000+ companies, featuring real-time updates, efficient search and filtering, and an improved job discovery experience for users at scale. Developed AI customer agents to automate SMS and email outreach, improving engagement and efficiency.",
+      technologies: ["AI", "Salesforce", "Zoho CRM", "SMS", "Email Automation", "Real-time Systems"]
+    },
+    {
       year: "Dec-2024 to Mar-2025",
       role: "Artificial Intelligence Intern",
       company: "Soven Developers",
