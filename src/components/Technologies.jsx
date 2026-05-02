@@ -1,238 +1,153 @@
+import { motion } from 'framer-motion';
 import { RiReactjsLine } from 'react-icons/ri';
-import { SiMongodb, SiFastapi, SiPostgresql, SiMysql, SiTensorflow, SiTypescript, SiTailwindcss, SiGit, SiCplusplus, SiFlask, SiPytorch, SiDotnet, SiNextdotjs } from 'react-icons/si';
+import {
+  SiMongodb, SiFastapi, SiPostgresql, SiMysql, SiTensorflow,
+  SiTypescript, SiTailwindcss, SiGit, SiCplusplus, SiFlask,
+  SiPytorch, SiDotnet, SiNextdotjs,
+} from 'react-icons/si';
 import { FaNodeJs, FaJava, FaPython } from 'react-icons/fa';
-import { motion } from "framer-motion";
 import PropTypes from 'prop-types';
+import { Glass } from './ui/Glass';
 
-// Custom C# icon component
-const CSharpIcon = ({ className, size }) => (
-  <div className={`${className} flex items-center justify-center`} style={{ fontSize: size }}>
-    <span className="font-bold">C#</span>
-  </div>
+const CSharpIcon = ({ size }) => (
+  <span className="font-mono font-bold" style={{ fontSize: size }}>C#</span>
 );
+CSharpIcon.propTypes = { size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]) };
+CSharpIcon.defaultProps = { size: 36 };
 
-// PropTypes for the custom component
-CSharpIcon.propTypes = {
-  className: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-};
-
-// Default props
-CSharpIcon.defaultProps = {
-  className: '',
-  size: 24
-};
-
-const iconVariant = (duration) => ({
-  initial: { y: -10, opacity: 0 },
-  animate: {
-    y: [10, -10],
-    opacity: 1,
-    transition: {
-      y: {
-        duration: duration,
-        ease: "easeInOut",
-        repeat: Infinity,
-        repeatType: "reverse",
-      },
-      opacity: {
-        duration: 0.5,
-      }
-    },
-  },
-});
-
-// Technology data organized by categories
-const techCategories = [
+const CATEGORIES = [
   {
-    title: "Programming Languages",
+    title: 'Languages',
+    span: 'col-span-2',
     items: [
-      {
-        name: "Python",
-        icon: FaPython,
-        color: "text-yellow-500",
-        duration: 1.0
-      },
-      {
-        name: "Java",
-        icon: FaJava,
-        color: "text-orange-600",
-        duration: 1.2
-      },
-      {
-        name: "C++",
-        icon: SiCplusplus,
-        color: "text-blue-500",
-        duration: 1.3
-      },
-      {
-        name: "C#",
-        icon: CSharpIcon,
-        color: "text-green-500",
-        duration: 1.5
-      }
-    ]
+      { name: 'Python',     Icon: FaPython,     color: '#eab308' },
+      { name: 'Java',       Icon: FaJava,       color: '#ea580c' },
+      { name: 'C++',        Icon: SiCplusplus,  color: '#3b82f6' },
+      { name: 'C#',         Icon: CSharpIcon,   color: '#22c55e' },
+    ],
   },
   {
-    title: "Frontend",
+    title: 'Frontend',
+    span: 'col-span-2',
     items: [
-      {
-        name: "React.js",
-        icon: RiReactjsLine,
-        color: "text-cyan-400",
-        duration: 1.4
-      },
-      {
-        name: "Next.js",
-        icon: SiNextdotjs,
-        color: "text-white",
-        duration: 1.5
-      },
-      {
-        name: "Tailwind CSS",
-        icon: SiTailwindcss,
-        color: "text-teal-400",
-        duration: 1.8
-      },
-      {
-        name: "TypeScript",
-        icon: SiTypescript,
-        color: "text-blue-400",
-        duration: 1.4
-      }
-    ]
+      { name: 'React',      Icon: RiReactjsLine, color: '#22d3ee' },
+      { name: 'Next.js',    Icon: SiNextdotjs,  color: '#ffffff' },
+      { name: 'Tailwind',   Icon: SiTailwindcss, color: '#2dd4bf' },
+      { name: 'TypeScript', Icon: SiTypescript, color: '#60a5fa' },
+    ],
   },
   {
-    title: "Backend",
+    title: 'Backend',
+    span: 'col-span-1',
     items: [
-      {
-        name: "Node.js",
-        icon: FaNodeJs,
-        color: "text-green-600",
-        duration: 1.6
-      },
-      {
-        name: ".NET",
-        icon: SiDotnet,
-        color: "text-purple-500",
-        duration: 1.7
-      },
-      {
-        name: "FastAPI",
-        icon: SiFastapi,
-        color: "text-teal-500",
-        duration: 1.8
-      },
-      {
-        name: "Flask",
-        icon: SiFlask,
-        color: "text-gray-300",
-        duration: 1.5
-      },
-    ]
+      { name: 'Node.js',  Icon: FaNodeJs,  color: '#16a34a' },
+      { name: '.NET',     Icon: SiDotnet,  color: '#a855f7' },
+      { name: 'FastAPI',  Icon: SiFastapi, color: '#14b8a6' },
+      { name: 'Flask',    Icon: SiFlask,   color: '#d1d5db' },
+    ],
   },
   {
-    title: "Databases",
+    title: 'Databases',
+    span: 'col-span-1',
     items: [
-      {
-        name: "MongoDB",
-        icon: SiMongodb,
-        color: "text-green-500",
-        duration: 1.2
-      },
-      {
-        name: "PostgreSQL",
-        icon: SiPostgresql,
-        color: "text-blue-600",
-        duration: 1.4
-      },
-      {
-        name: "MySQL",
-        icon: SiMysql,
-        color: "text-blue-500",
-        duration: 1.6
-      }
-    ]
+      { name: 'MongoDB',    Icon: SiMongodb,    color: '#22c55e' },
+      { name: 'PostgreSQL', Icon: SiPostgresql, color: '#2563eb' },
+      { name: 'MySQL',      Icon: SiMysql,      color: '#3b82f6' },
+    ],
   },
   {
-    title: "AI & DevOps",
+    title: 'AI & DevOps',
+    span: 'col-span-2',
     items: [
-      {
-        name: "TensorFlow",
-        icon: SiTensorflow,
-        color: "text-orange-500",
-        duration: 1.0
-      },
-      {
-        name: "PyTorch",
-        icon: SiPytorch,
-        color: "text-red-500",
-        duration: 1.1
-      },
-      {
-        name: "Git",
-        icon: SiGit,
-        color: "text-red-500",
-        duration: 1.6
-      }
-    ]
-  }
+      { name: 'TensorFlow', Icon: SiTensorflow, color: '#f97316' },
+      { name: 'PyTorch',    Icon: SiPytorch,    color: '#ef4444' },
+      { name: 'Git',        Icon: SiGit,        color: '#ef4444' },
+    ],
+  },
 ];
 
-const Technologies = () => {
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } },
+};
+
+export default function Technologies() {
   return (
     <section id="Technologies" className="pt-20">
-      <div className="border-b border-slate-800 pb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            My <span className="gradient-text">Skills</span>
-          </h2>
-          <p className="text-slate-400 text-center max-w-2xl mx-auto">
-            Technologies and tools I work with
-          </p>
-        </motion.div>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6 }}
+        className="text-3xl md:text-4xl font-display font-bold text-center mb-4"
+        style={{ color: 'var(--text-primary)' }}
+      >
+        My <span className="accent-text">Skills</span>
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="text-center max-w-xl mx-auto mb-16 text-sm"
+        style={{ color: 'var(--text-muted)' }}
+      >
+        Technologies and tools I work with
+      </motion.p>
 
-        <div className="space-y-16 max-w-6xl mx-auto">
-          {techCategories.map((category, categoryIndex) => (
-            <motion.div 
-              key={categoryIndex}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: categoryIndex * 0.1 }}
+      <div className="space-y-10 max-w-5xl mx-auto">
+        {CATEGORIES.map((cat, ci) => (
+          <motion.div
+            key={cat.title}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, delay: ci * 0.08 }}
+          >
+            {/* Category label */}
+            <div className="flex items-center gap-3 mb-4">
+              <span
+                className="text-xs font-mono font-semibold px-3 py-1 rounded-full border"
+                style={{ color: 'var(--accent-1)', borderColor: 'var(--border-glass)', background: 'var(--bg-glass)' }}
+              >
+                {cat.title}
+              </span>
+              <div className="flex-1 h-px" style={{ background: 'var(--border-glass)' }} />
+            </div>
+
+            {/* Tech grid */}
+            <motion.div
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+              variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              className="space-y-6"
             >
-              <h3 className="text-xl font-semibold text-center">
-                <span className="gradient-text">{category.title}</span>
-              </h3>
-              
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                {category.items.map((tech, index) => (
-                  <motion.div
-                    key={index}
-                    variants={iconVariant(tech.duration)}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
-                    className="flex flex-col items-center justify-center bg-slate-800/50 rounded-xl border border-slate-700 p-6 hover:border-teal-500/50 transition-all duration-300 hover:shadow-md hover:shadow-teal-500/10"
+              {cat.items.map(({ name, Icon, color }) => (
+                <motion.div key={name} variants={fadeUp}>
+                  <Glass
+                    className="p-5 flex flex-col items-center gap-3 cursor-default group"
+                    style={{ transition: 'transform 0.2s, box-shadow 0.2s' }}
                   >
-                    <tech.icon size={40} className={`text-4xl ${tech.color}`} aria-label={tech.name} />
-                    <p className="mt-4 text-center text-sm font-medium text-white">{tech.name}</p>
-                  </motion.div>
-                ))}
-              </div>
+                    <div
+                      className="text-4xl transition-transform duration-300 group-hover:rotate-[15deg]"
+                      style={{ color }}
+                    >
+                      <Icon size={38} />
+                    </div>
+                    <p
+                      className="text-xs font-mono font-medium text-center"
+                      style={{ color: 'var(--text-muted)' }}
+                    >
+                      {name}
+                    </p>
+                  </Glass>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
-};
-
-export default Technologies;
+}

@@ -1,0 +1,99 @@
+/* ─── Cyber Theme (default) ─── */
+[data-theme="cyber"] {
+  --bg-primary:    #050810;
+  --bg-secondary:  #0a0f1e;
+  --bg-glass:      rgba(10, 20, 50, 0.45);
+  --border-glass:  rgba(0, 255, 200, 0.18);
+  --accent-1:      #00ffe0;
+  --accent-2:      #39ff14;
+  --accent-3:      #7b2fff;
+  --text-primary:  #e8f4ff;
+  --text-muted:    #6a8caf;
+  --glow:          0 0 24px rgba(0, 255, 224, 0.35);
+  --gradient-hero: linear-gradient(135deg, #050810 0%, #0a1628 50%, #0d0520 100%);
+  --scrollbar-thumb: #00ffe040;
+  --scrollbar-track: #0a0f1e;
+}
+
+/* ─── Aurora Theme ─── */
+[data-theme="aurora"] {
+  --bg-primary:    #08061a;
+  --bg-secondary:  #100c2a;
+  --bg-glass:      rgba(30, 20, 70, 0.40);
+  --border-glass:  rgba(180, 100, 255, 0.20);
+  --accent-1:      #b47aff;
+  --accent-2:      #ff6eb4;
+  --accent-3:      #4dd9c0;
+  --text-primary:  #f0ecff;
+  --text-muted:    #8878bb;
+  --glow:          0 0 28px rgba(180, 122, 255, 0.35);
+  --gradient-hero: linear-gradient(135deg, #08061a 0%, #150d35 50%, #0c1a2e 100%);
+  --scrollbar-thumb: #b47aff40;
+  --scrollbar-track: #100c2a;
+}
+
+/* ─── Solaris Theme ─── */
+[data-theme="solaris"] {
+  --bg-primary:    #faf8f2;
+  --bg-secondary:  #f0ece0;
+  --bg-glass:      rgba(255, 252, 240, 0.70);
+  --border-glass:  rgba(200, 140, 20, 0.22);
+  --accent-1:      #e07b00;
+  --accent-2:      #c73b1a;
+  --accent-3:      #1a4a6b;
+  --text-primary:  #1a1610;
+  --text-muted:    #7a6a50;
+  --glow:          0 0 20px rgba(224, 123, 0, 0.25);
+  --gradient-hero: linear-gradient(135deg, #faf8f2 0%, #f5edd5 50%, #ffe8c8 100%);
+  --scrollbar-thumb: #e07b0040;
+  --scrollbar-track: #f0ece0;
+}
+
+/* ─── Font variables ─── */
+:root {
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
+
+/* ─── Theme transition ─── */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* exclude motion-sensitive transitions */
+.no-transition, .no-transition * {
+  transition: none !important;
+}
+
+/* ─── Mesh background ─── */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, var(--accent-3) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 70%, var(--accent-1) 0%, transparent 60%),
+    var(--bg-primary);
+  opacity: 0.15;
+  animation: meshDrift 14s ease-in-out infinite alternate;
+}
+
+@keyframes meshDrift {
+  0%   { transform: scale(1) translateX(0); }
+  100% { transform: scale(1.08) translateX(2%); }
+}
+
+/* ─── Custom scrollbar (theme-aware) ─── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track, #0a0f1e); }
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb, #00ffe040);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { opacity: 0.8; }
