@@ -5,78 +5,239 @@
 @tailwind utilities;
 
 html {
-  scroll-padding-top: 80px;
+  scroll-padding-top: 96px;
   scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tailwind's preflight defaults every border to gray-200; make the hairline
+   token the default instead so `border-b` is always theme-correct. */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--rule);
+  }
 }
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  overflow-x: hidden;
+  background-color: var(--ground);
+  color: var(--ink);
+  /* `clip`, not `hidden`: `hidden` makes body a scroll container, which breaks
+     `position: sticky` for every descendant (the project preview panel). */
+  overflow-x: clip;
+  font-size: 16px;
+  line-height: 1.55;
 }
 
-h1, h2, h3, h4 {
+/* ═══ Type primitives ═══ */
+
+.display {
   font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.85;
+  letter-spacing: -0.035em;
+  font-stretch: 105%;
 }
+
+.display-xl { font-size: clamp(2.75rem, 7.5vw, 6.5rem); }
+.display-lg { font-size: clamp(2.25rem, 5.5vw, 4.5rem); }
+.display-md { font-size: clamp(1.5rem, 3.5vw, 2.5rem); }
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+}
+
+.meta-ink { color: var(--ink); }
+
+.lead {
+  font-size: clamp(1.0625rem, 1.8vw, 1.375rem);
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+}
+
+/* ═══ Structure ═══ */
+
+.page {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
+}
+
+.rule {
+  height: 1px;
+  background: var(--rule);
+  border: 0;
+}
+
+.rule-strong { background: var(--rule-strong); }
 
 section {
-  @apply py-16 md:py-24;
+  scroll-margin-top: 96px;
 }
 
-.accent-text {
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ═══ Interaction ═══ */
+
+/* Whole-row inversion — the signature hover. Instant, no easing. */
+.invert-row {
+  transition: none;
 }
+
+.invert-row:hover,
+.invert-row:focus-within {
+  background: var(--invert-bg);
+  color: var(--invert-fg);
+}
+
+.invert-row:hover .meta,
+.invert-row:focus-within .meta,
+.invert-row:hover .soft,
+.invert-row:focus-within .soft {
+  color: var(--invert-fg);
+}
+
+.soft { color: var(--ink-soft); }
+
+/* Underline that draws in from the left */
+.link-draw {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.link-draw::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-draw:hover::after,
+.link-draw:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.link-draw-on::after { transform: scaleX(1); }
+
+/* Buttons are text, not pills */
+.btn-line {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.9rem 1.6rem;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.18s, color 0.18s;
+  box-shadow: var(--offset);
+}
+
+.btn-line:hover {
+  background: var(--ink);
+  color: var(--ground);
+}
+
+.btn-fill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.9rem 1.6rem;
+  border: 1px solid var(--signal);
+  background: var(--signal);
+  color: var(--signal-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: filter 0.18s;
+  box-shadow: var(--offset);
+}
+
+.btn-fill:hover { filter: brightness(1.12); }
 
 :focus-visible {
-  outline: 2px solid var(--accent-1);
-  outline-offset: 2px;
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
 }
 
-.btn-accent {
-  padding: 0.75rem 1.5rem;
-  background: var(--accent-1);
-  color: var(--bg-primary);
-  font-weight: 600;
-  border-radius: 0.5rem;
-  transition: opacity 0.2s, transform 0.2s;
+/* ═══ Media treatment ═══
+   Desaturate every screenshot so mismatched palettes read as one system;
+   restore color on hover. */
+.media-tone {
+  filter: var(--media-filter);
+  transition: filter 0.4s ease;
+}
+
+.group:hover .media-tone,
+.media-tone:hover {
+  filter: none;
+}
+
+/* ═══ Marquee ═══ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
   display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-display);
+  white-space: nowrap;
+  animation: marquee 38s linear infinite;
+  will-change: transform;
 }
 
-.btn-accent:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
 }
 
-.btn-glass {
-  padding: 0.75rem 1.5rem;
-  background: var(--bg-glass);
-  color: var(--text-primary);
-  font-weight: 500;
-  border-radius: 0.5rem;
-  border: 1px solid var(--border-glass);
-  backdrop-filter: blur(8px);
-  transition: border-color 0.2s, transform 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+/* ═══ Headline mask reveal ═══ */
+.mask-line {
+  display: block;
+  overflow: hidden;
 }
 
-.btn-glass:hover {
-  border-color: var(--accent-1);
-  transform: translateY(-1px);
+/* ═══ Scroll performance ═══ */
+
+/* Fixed header height, so anchor jumps land below the masthead when Lenis
+   is not driving (touch devices, reduced motion). */
+section[id] {
+  scroll-margin-top: 88px;
 }
 
-/* keep old gradient-text for backward compat */
-.gradient-text {
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Skip layout and paint for sections still below the fold. contain-intrinsic-size
+   keeps the scrollbar stable by reserving a plausible height until each one is
+   measured for real. */
+@supports (content-visibility: auto) {
+  main > section:not(#Hero) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+}
+
+/* Only pay for the grayscale->color transition while a card is actually
+   being hovered, instead of keeping every screenshot on its own layer. */
+.media-tone:hover,
+.group:hover .media-tone {
+  will-change: filter;
 }

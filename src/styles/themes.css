@@ -1,99 +1,117 @@
-/* ─── Cyber Theme (default) ─── */
-[data-theme="cyber"] {
-  --bg-primary:    #050810;
-  --bg-secondary:  #0a0f1e;
-  --bg-glass:      rgba(10, 20, 50, 0.45);
-  --border-glass:  rgba(0, 255, 200, 0.18);
-  --accent-1:      #00ffe0;
-  --accent-2:      #39ff14;
-  --accent-3:      #7b2fff;
-  --text-primary:  #e8f4ff;
-  --text-muted:    #6a8caf;
-  --glow:          0 0 24px rgba(0, 255, 224, 0.35);
-  --gradient-hero: linear-gradient(135deg, #050810 0%, #0a1628 50%, #0d0520 100%);
-  --scrollbar-thumb: #00ffe040;
-  --scrollbar-track: #0a0f1e;
+/* ═══════════════════════════════════════════════════════════
+   INDEX — Swiss editorial design system
+   Four themes, identical token names.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Ink (default) — bone paper, black type ─── */
+[data-theme="ink"] {
+  --ground:      #f4f1ea;
+  --ground-2:    #e9e5db;
+  --ink:         #111111;
+  --ink-soft:    #6b6862;
+  --rule:        rgba(17, 17, 17, 0.16);
+  --rule-strong: rgba(17, 17, 17, 0.42);
+  --signal:      #ff3b14;
+  --signal-ink:  #f4f1ea;
+  --invert-bg:   #111111;
+  --invert-fg:   #f4f1ea;
+  --grid:        transparent;
+  --ink-2:       #ff3b14;
+  --offset:      none;
+  --media-filter: grayscale(1) contrast(1.05);
 }
 
-/* ─── Aurora Theme ─── */
-[data-theme="aurora"] {
-  --bg-primary:    #08061a;
-  --bg-secondary:  #100c2a;
-  --bg-glass:      rgba(30, 20, 70, 0.40);
-  --border-glass:  rgba(180, 100, 255, 0.20);
-  --accent-1:      #b47aff;
-  --accent-2:      #ff6eb4;
-  --accent-3:      #4dd9c0;
-  --text-primary:  #f0ecff;
-  --text-muted:    #8878bb;
-  --glow:          0 0 28px rgba(180, 122, 255, 0.35);
-  --gradient-hero: linear-gradient(135deg, #08061a 0%, #150d35 50%, #0c1a2e 100%);
-  --scrollbar-thumb: #b47aff40;
-  --scrollbar-track: #100c2a;
+/* ─── Void — inverted ink ─── */
+[data-theme="void"] {
+  --ground:      #0b0b0c;
+  --ground-2:    #141416;
+  --ink:         #f4f1ea;
+  --ink-soft:    #8a877f;
+  --rule:        rgba(244, 241, 234, 0.18);
+  --rule-strong: rgba(244, 241, 234, 0.45);
+  --signal:      #ff3b14;
+  --signal-ink:  #0b0b0c;
+  --invert-bg:   #f4f1ea;
+  --invert-fg:   #0b0b0c;
+  --grid:        transparent;
+  --ink-2:       #ff3b14;
+  --offset:      none;
+  --media-filter: grayscale(1) contrast(1.1) brightness(0.92);
 }
 
-/* ─── Solaris Theme ─── */
-[data-theme="solaris"] {
-  --bg-primary:    #faf8f2;
-  --bg-secondary:  #f0ece0;
-  --bg-glass:      rgba(255, 252, 240, 0.70);
-  --border-glass:  rgba(200, 140, 20, 0.22);
-  --accent-1:      #e07b00;
-  --accent-2:      #c73b1a;
-  --accent-3:      #1a4a6b;
-  --text-primary:  #1a1610;
-  --text-muted:    #7a6a50;
-  --glow:          0 0 20px rgba(224, 123, 0, 0.25);
-  --gradient-hero: linear-gradient(135deg, #faf8f2 0%, #f5edd5 50%, #ffe8c8 100%);
-  --scrollbar-thumb: #e07b0040;
-  --scrollbar-track: #f0ece0;
+/* ─── Blueprint — drafting table ─── */
+[data-theme="blueprint"] {
+  --ground:      #0a1a2f;
+  --ground-2:    #0d2138;
+  --ink:         #d6e6f5;
+  --ink-soft:    #6f93b8;
+  --rule:        rgba(56, 97, 140, 0.55);
+  --rule-strong: rgba(120, 170, 220, 0.8);
+  --signal:      #ffb000;
+  --signal-ink:  #0a1a2f;
+  --invert-bg:   #d6e6f5;
+  --invert-fg:   #0a1a2f;
+  --grid:        rgba(56, 97, 140, 0.22);
+  --ink-2:       #ffb000;
+  --offset:      none;
+  --media-filter: grayscale(1) contrast(1.1) sepia(0.35) hue-rotate(170deg) brightness(0.9);
 }
 
-/* ─── Font variables ─── */
+/* ─── Riso — duotone print ─── */
+[data-theme="riso"] {
+  --ground:      #fdf6e3;
+  --ground-2:    #f6ecd4;
+  --ink:         #1a1a1a;
+  --ink-soft:    #6d675a;
+  --rule:        rgba(0, 51, 255, 0.35);
+  --rule-strong: rgba(0, 51, 255, 0.7);
+  --signal:      #0033ff;
+  --signal-ink:  #fdf6e3;
+  --invert-bg:   #0033ff;
+  --invert-fg:   #fdf6e3;
+  --grid:        transparent;
+  --ink-2:       #ff2d95;
+  --offset:      3px 3px 0 var(--ink-2);
+  --media-filter: grayscale(1) contrast(1.3) sepia(0.5) hue-rotate(190deg) saturate(2.2);
+}
+
+/* ─── Fonts ─── */
 :root {
-  --font-display: 'Syne', sans-serif;
-  --font-body:    'DM Sans', sans-serif;
-  --font-mono:    'JetBrains Mono', monospace;
+  --font-display: 'Archivo', 'Arial Narrow', sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+  --page-max:     1440px;
+  --page-pad:     clamp(1.25rem, 4vw, 4.5rem);
 }
 
-/* ─── Theme transition ─── */
-html {
-  transition: background-color 0.3s ease, color 0.3s ease;
+/* ─── Theme crossfade ───
+   Scoped to the properties that actually change, so layout and
+   transform animations are never dragged into a 300ms tween. */
+body,
+.theme-tween {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
 }
 
-* {
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* exclude motion-sensitive transitions */
-.no-transition, .no-transition * {
-  transition: none !important;
-}
-
-/* ─── Mesh background ─── */
-.bg-mesh {
+/* ─── Blueprint grid overlay ─── */
+.grid-overlay {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 60% 50% at 20% 30%, var(--accent-3) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 80% 70%, var(--accent-1) 0%, transparent 60%),
-    var(--bg-primary);
-  opacity: 0.15;
-  animation: meshDrift 14s ease-in-out infinite alternate;
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+  /* Promoted to its own compositor layer: without this the two full-viewport
+     gradients repaint on every scroll frame in Chromium. */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
-@keyframes meshDrift {
-  0%   { transform: scale(1) translateX(0); }
-  100% { transform: scale(1.08) translateX(2%); }
-}
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--ground); }
+::-webkit-scrollbar-thumb { background: var(--rule-strong); border: 3px solid var(--ground); }
+::-webkit-scrollbar-thumb:hover { background: var(--signal); }
 
-/* ─── Custom scrollbar (theme-aware) ─── */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--scrollbar-track, #0a0f1e); }
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb, #00ffe040);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover { opacity: 0.8; }
+::selection { background: var(--signal); color: var(--signal-ink); }

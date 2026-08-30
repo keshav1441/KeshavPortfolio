@@ -1,134 +1,129 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Glass } from './ui/Glass';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { RunningHead, Fade } from './ui/Editorial';
 
 const EXPERIENCES = [
   {
-    year: 'Jun 2025 – Present',
-    role: 'Software Engineer Intern',
+    from: '2026',
+    to: 'Now',
+    role: 'Software Engineer',
     company: 'AI Assistant',
-    description:
-      'Integrated AI agents with Salesforce and Zoho CRM for seamless data sync and lead management. Built a scalable job listing platform aggregating opportunities from 1,000+ companies, featuring real-time updates, efficient search and filtering. Developed AI customer agents to automate SMS and email outreach, improving engagement and efficiency.',
-    technologies: ['AI', 'Salesforce', 'Zoho CRM', 'SMS', 'Email Automation', 'Real-time Systems'],
+    location: 'Pune, IN · On-site',
+    bullets: [
+      'Ship production features for a multi-tenant medicine e-commerce platform.',
+      'Built a config layer that lets new pharmacy tenants launch without code changes.',
+    ],
+    technologies: ['Multi-tenancy', 'E-commerce', 'Full Stack', 'Config-driven Systems'],
   },
   {
-    year: 'Dec 2024 – Mar 2025',
+    from: '2025',
+    to: '2026',
+    role: 'Software Engineer Intern',
+    company: 'AI Assistant',
+    location: 'Pune, IN · On-site',
+    bullets: [
+      'Built an AI HR platform for resume parsing and ranking, with automated phone and Zoom voice interviews.',
+      'Built a job aggregator scraping 1,000+ company career pages on a schedule, deduped into a searchable index.',
+      'Integrated AI agents with Salesforce and Zoho CRM for data sync and lead management, plus agents automating SMS and email outreach.',
+    ],
+    technologies: ['AI Agents', 'Voice AI', 'Web Scraping', 'Salesforce', 'Zoho CRM', 'Search'],
+  },
+  {
+    from: '2024',
+    to: '2025',
     role: 'Artificial Intelligence Intern',
     company: 'Soven Developers',
-    description:
-      'Developed a medical chatbot using Groq APIs to process medical reports and images. Improved chatbot accuracy by applying NLP techniques for medical terminology. Ensured the chatbot complies with medical regulations and provides accurate, ethical responses.',
+    location: 'Remote',
+    bullets: [
+      'Developed a medical chatbot on Groq APIs that processes medical reports and images.',
+      'Improved accuracy by applying NLP techniques tuned to medical terminology.',
+      'Kept responses inside medical compliance and ethics constraints.',
+    ],
     technologies: ['Groq', 'NLP', 'TensorFlow', 'Python'],
   },
   {
-    year: 'Jul 2024 – Sep 2024',
+    from: '2024',
+    to: '2024',
     role: 'Software Development Engineer Intern',
     company: 'Devtech Consulting Services',
-    description:
-      'Designed and implemented user registration in ASP.NET Core with Entity Framework. Managed and optimized MySQL database queries, reducing data retrieval time by 30%. Enhanced the user interface through responsive design and animations using React.js and CSS frameworks.',
-    technologies: ['ASP.NET Core', 'Entity Framework', 'MySQL', 'React.js', 'CSS'],
+    location: 'Pune, IN',
+    bullets: [
+      'Designed and implemented user registration in ASP.NET Core with Entity Framework.',
+      'Optimized MySQL queries, cutting data retrieval time by 30%.',
+      'Rebuilt interface sections with responsive React.js layouts and motion.',
+    ],
+    technologies: ['ASP.NET Core', 'Entity Framework', 'MySQL', 'React.js'],
   },
 ];
 
 export default function Experience() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start center', 'end center'],
-  });
-  const spineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const [open, setOpen] = useState(0);
 
   return (
-    <section id="Experience" className="pt-20">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6 }}
-        className="text-3xl md:text-4xl font-display font-bold text-center mb-4"
-        style={{ color: 'var(--text-primary)' }}
-      >
-        Work <span className="accent-text">Experience</span>
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-center max-w-xl mx-auto mb-16 text-sm"
-        style={{ color: 'var(--text-muted)' }}
-      >
-        My professional journey and roles
-      </motion.p>
+    <section id="Experience" className="pt-24 md:pt-32">
+      <RunningHead index="04" title="Record" meta={`${EXPERIENCES.length} positions`} />
 
-      <div ref={containerRef} className="relative max-w-4xl mx-auto">
-        {/* Animated spine */}
-        <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px hidden md:block" aria-hidden>
-          <motion.div
-            className="w-full h-full origin-top"
-            style={{ scaleY: spineScaleY, background: 'var(--accent-1)', opacity: 0.25 }}
-          />
-        </div>
-
+      <div style={{ borderTop: '1px solid var(--rule-strong)' }}>
         {EXPERIENCES.map((exp, i) => {
-          const isLeft = i % 2 === 0;
+          const isOpen = open === i;
           return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.7, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className={`relative flex mb-12 ${isLeft ? 'md:justify-start' : 'md:justify-end'}`}
-            >
-              {/* Connector dot */}
-              <div
-                className="absolute left-1/2 -translate-x-1/2 top-6 w-3 h-3 rounded-full hidden md:block z-10"
-                style={{ background: 'var(--accent-1)', boxShadow: '0 0 8px var(--accent-1)' }}
-                aria-hidden
-              />
+            <Fade key={`${exp.company}-${exp.role}`} delay={i * 0.05} className="border-b">
+              <button
+                onClick={() => setOpen(isOpen ? -1 : i)}
+                aria-expanded={isOpen}
+                className={`invert-row w-full text-left grid grid-cols-[1fr_auto] md:grid-cols-[9rem_1fr_auto] gap-x-6 gap-y-1 items-baseline py-6 px-3 -mx-3 ${isOpen ? 'is-open' : ''}`}
+              >
+                <span className="meta meta-ink order-1 md:order-none">
+                  {exp.from} — {exp.to}
+                </span>
 
-              <div className={`w-full md:w-[46%] ${isLeft ? '' : ''}`}>
-                <Glass className="p-6">
-                  {/* Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
-                    <div>
-                      <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-primary)' }}>
-                        {exp.role}
-                      </h3>
-                      <p className="text-sm font-medium mt-0.5" style={{ color: 'var(--accent-1)' }}>
-                        {exp.company}
-                      </p>
+                <span className="col-span-2 md:col-span-1 order-3 md:order-none">
+                  <span className="display text-2xl md:text-4xl block">{exp.role}</span>
+                  <span className="meta block mt-1.5">
+                    {exp.company} <span style={{ color: 'var(--signal)' }}>·</span> {exp.location}
+                  </span>
+                </span>
+
+                <span
+                  className="order-2 md:order-none self-center font-mono leading-none"
+                  style={{ fontSize: '1.5rem', color: 'var(--signal)' }}
+                  aria-hidden
+                >
+                  {isOpen ? '−' : '+'}
+                </span>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-[9rem_1fr] gap-x-6 pb-8 md:pl-0">
+                      <span className="meta hidden md:block">Detail</span>
+                      <div>
+                        <ul className="space-y-2 mb-5" style={{ maxWidth: '70ch' }}>
+                          {exp.bullets.map(b => (
+                            <li key={b} className="flex gap-3 text-sm soft">
+                              <span style={{ color: 'var(--signal)' }} aria-hidden>—</span>
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <ul className="flex flex-wrap gap-x-4 gap-y-1">
+                          {exp.technologies.map(t => (
+                            <li key={t} className="meta">{t}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                    <span
-                      className="text-xs font-mono px-3 py-1 rounded-full self-start whitespace-nowrap"
-                      style={{ color: 'var(--text-muted)', background: 'var(--bg-secondary)', border: '1px solid var(--border-glass)' }}
-                    >
-                      {exp.year}
-                    </span>
-                  </div>
-
-                  <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
-                    {exp.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map(t => (
-                      <span
-                        key={t}
-                        className="text-xs font-mono px-2 py-0.5 rounded-full"
-                        style={{
-                          color: 'var(--accent-1)',
-                          background: 'var(--bg-secondary)',
-                          border: '1px solid var(--border-glass)',
-                        }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </Glass>
-              </div>
-            </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </Fade>
           );
         })}
       </div>

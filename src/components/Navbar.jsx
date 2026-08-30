@@ -1,145 +1,147 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Glass } from './ui/Glass';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { useLenis } from '../context/LenisContext';
+import { scrollToElement } from '../lib/scroll';
 
 const NAV_LINKS = [
-  { label: 'Home',       href: '#Hero' },
-  { label: 'About',      href: '#About_me' },
-  { label: 'Skills',     href: '#Technologies' },
-  { label: 'Experience', href: '#Experience' },
-  { label: 'Projects',   href: '#Projects' },
-  { label: 'Contact',    href: '#Contact' },
+  { num: '01', label: 'Index',      href: '#Hero' },
+  { num: '02', label: 'Profile',    href: '#About_me' },
+  { num: '03', label: 'Stack',      href: '#Technologies' },
+  { num: '04', label: 'Record',     href: '#Experience' },
+  { num: '05', label: 'Work',       href: '#Projects' },
+  { num: '06', label: 'Contact',    href: '#Contact' },
 ];
 
-const SECTION_IDS = ['Hero', 'About_me', 'Technologies', 'Experience', 'Projects', 'Contact'];
+const SECTION_IDS = NAV_LINKS.map(l => l.href.slice(1));
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('Hero');
+  const lenis = useLenis();
 
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 260, damping: 40, mass: 0.4 });
+
+  // Section tracking via IntersectionObserver rather than a scroll listener.
+  // The old handler read offsetTop for all six sections on every scroll event,
+  // forcing a synchronous layout each frame while Lenis was already driving a
+  // rAF loop — the main cause of scroll jank.
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 80);
-      const pos = window.scrollY + 120;
-      for (let i = SECTION_IDS.length - 1; i >= 0; i--) {
-        const el = document.getElementById(SECTION_IDS[i]);
-        if (el && el.offsetTop <= pos) {
-          setActive(SECTION_IDS[i]);
-          return;
+    const visible = new Map();
+    const observer = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) visible.set(entry.target.id, entry.intersectionRatio);
+        let best = null;
+        let bestRatio = 0;
+        for (const id of SECTION_IDS) {
+          const ratio = visible.get(id) || 0;
+          if (ratio > bestRatio) { best = id; bestRatio = ratio; }
         }
-      }
-    };
-    const onResize = () => { if (window.innerWidth >= 768) setIsOpen(false); };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onResize);
-    };
+        if (best) setActive(best);
+      },
+      { rootMargin: '-88px 0px -55% 0px', threshold: [0, 0.15, 0.4, 0.75, 1] },
+    );
+
+    for (const id of SECTION_IDS) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+    return () => observer.disconnect();
   }, []);
 
-  const handleLinkClick = (href) => {
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth >= 768) setIsOpen(false); };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
+  const go = (href) => {
     setIsOpen(false);
-    const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
-    }
+    scrollToElement(lenis, document.getElementById(href.slice(1)));
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
-      <Glass
-        intensity={scrolled ? 'lg' : 'md'}
-        className="w-full max-w-[860px] px-6 py-3 flex items-center justify-between"
-        style={{ transition: 'all 0.3s ease' }}
-      >
-        {/* Logo */}
+    <header
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{ background: 'var(--ground)', borderBottom: '1px solid var(--rule)' }}
+    >
+      <div className="page flex items-center justify-between h-14 md:h-16">
+        {/* Identity */}
         <a
           href="#Hero"
-          onClick={() => handleLinkClick('#Hero')}
-          className="flex items-center justify-center w-10 h-10 rounded-lg font-display font-bold text-lg"
-          style={{ background: 'var(--accent-1)', color: 'var(--bg-primary)' }}
-          aria-label="Home"
+          onClick={e => { e.preventDefault(); go('#Hero'); }}
+          className="meta meta-ink hover:opacity-60 transition-opacity"
         >
-          KS
+          Keshav Sharma
+          <span className="hidden sm:inline" style={{ color: 'var(--ink-soft)' }}> — Software Engineer</span>
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
-          {NAV_LINKS.map(({ label, href }) => {
-            const id = href.replace('#', '');
-            const isActive = active === id;
+        <nav className="hidden md:flex items-center gap-7" aria-label="Main navigation">
+          {NAV_LINKS.map(({ num, label, href }) => {
+            const isActive = active === href.slice(1);
             return (
               <a
                 key={href}
                 href={href}
-                onClick={(e) => { e.preventDefault(); handleLinkClick(href); }}
-                className="relative px-4 py-1.5 text-sm font-medium rounded-full transition-colors duration-200"
-                style={{ color: isActive ? 'var(--accent-1)' : 'var(--text-muted)' }}
+                onClick={e => { e.preventDefault(); go(href); }}
+                className={`meta link-draw ${isActive ? 'meta-ink link-draw-on' : ''}`}
+                style={isActive ? { color: 'var(--ink)' } : undefined}
               >
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-0 rounded-full"
-                    style={{ background: 'var(--accent-1)', opacity: 0.12 }}
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{label}</span>
+                <span style={{ color: 'var(--signal)' }}>{num}</span>{' '}{label}
               </a>
             );
           })}
         </nav>
 
-        {/* Hamburger */}
+        {/* Mobile trigger */}
         <button
-          className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
+          className="md:hidden meta meta-ink"
           onClick={() => setIsOpen(v => !v)}
-          aria-label="Toggle menu"
           aria-expanded={isOpen}
+          aria-label="Toggle menu"
         >
-          {[0, 1, 2].map(i => (
-            <span
-              key={i}
-              className="block w-5 h-0.5 rounded-full transition-all duration-300"
-              style={{
-                background: 'var(--text-primary)',
-                transform: isOpen
-                  ? i === 0 ? 'rotate(45deg) translateY(8px)' : i === 2 ? 'rotate(-45deg) translateY(-8px)' : 'scaleX(0)'
-                  : 'none',
-                opacity: isOpen && i === 1 ? 0 : 1,
-              }}
-            />
-          ))}
+          {isOpen ? 'Close' : 'Menu'}
         </button>
-      </Glass>
+      </div>
 
-      {/* Mobile overlay */}
+      {/* Scroll progress hairline */}
+      <motion.div
+        className="absolute bottom-0 left-0 h-px origin-left w-full"
+        style={{ scaleX: progress, background: 'var(--signal)' }}
+        aria-hidden
+      />
+
+      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 md:hidden flex flex-col items-center justify-center"
-            style={{ background: 'var(--bg-primary)', backdropFilter: 'blur(20px)' }}
+            transition={{ duration: 0.18 }}
+            className="fixed inset-0 top-14 z-40 md:hidden flex flex-col"
+            style={{ background: 'var(--ground)' }}
           >
-            <nav className="flex flex-col items-center gap-8" aria-label="Mobile navigation">
-              {NAV_LINKS.map(({ label, href }, i) => (
+            <nav className="flex flex-col" aria-label="Mobile navigation">
+              {NAV_LINKS.map(({ num, label, href }, i) => (
                 <motion.a
                   key={href}
                   href={href}
-                  onClick={(e) => { e.preventDefault(); handleLinkClick(href); }}
-                  initial={{ opacity: 0, y: 24 }}
+                  onClick={e => { e.preventDefault(); go(href); }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06, duration: 0.3 }}
-                  className="text-3xl font-display font-semibold transition-colors duration-200"
-                  style={{ color: active === href.replace('#', '') ? 'var(--accent-1)' : 'var(--text-primary)' }}
+                  transition={{ delay: i * 0.04, duration: 0.25 }}
+                  className="invert-row flex items-baseline gap-4 px-[var(--page-pad)] py-5 border-b"
+                  style={{ borderColor: 'var(--rule)' }}
                 >
-                  {label}
+                  <span className="meta" style={{ color: 'var(--signal)' }}>{num}</span>
+                  <span className="display display-md">{label}</span>
                 </motion.a>
               ))}
             </nav>

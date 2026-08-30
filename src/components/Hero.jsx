@@ -1,167 +1,127 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import profilepic from '../assets/Herophoto.jpg';
-import { Glass } from './ui/Glass';
+import { MaskLine, Marquee } from './ui/Editorial';
 
-const ROLES = ['Frontend Engineer', 'AI Builder', 'Vision Researcher'];
+const RESUME_URL = 'https://drive.google.com/file/d/1q8BZW8x0yd15ZjupDxx-pX3EWU1AO650/view?usp=sharing';
 
-const PARTICLES = Array.from({ length: 28 }, (_, i) => ({
-  id: i,
-  left: `${Math.random() * 100}%`,
-  size: Math.random() * 3 + 1,
-  delay: Math.random() * 5,
-  duration: Math.random() * 8 + 6,
-}));
+const FACTS = [
+  ['Status',   'Open to work'],
+  ['Based',    'Pune, India'],
+  ['Role',     'Software Engineer'],
+  ['Focus',    'AI systems / full-stack'],
+];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.18 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
-};
+const KEYWORDS = [
+  'NEXT.JS', 'PYTHON', 'RAG PIPELINES', 'TYPESCRIPT', 'FASTAPI',
+  'POSTGRES', 'PYTORCH', 'REACT NATIVE', 'AGENT ORCHESTRATION', 'NODE.JS',
+];
 
 export default function Hero() {
-  const [roleIdx, setRoleIdx] = useState(0);
   const heroRef = useRef(null);
-
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const portraitY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
-  const headlineY = useTransform(scrollYProgress, [0, 1], ['0%', '-5%']);
-
-  useEffect(() => {
-    const id = setInterval(() => setRoleIdx(i => (i + 1) % ROLES.length), 2600);
-    return () => clearInterval(id);
-  }, []);
+  const portraitY = useTransform(scrollYProgress, [0, 1], ['0%', '14%']);
 
   return (
-    <section id="Hero" ref={heroRef} className="relative pt-36 pb-20 md:pt-44 md:pb-28 min-h-screen flex items-center">
-      <div className="w-full grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 items-center">
+    <section id="Hero" ref={heroRef} className="pt-24 md:pt-32">
+      {/* ── Masthead ── */}
+      <div className="flex items-baseline justify-between pb-3 mb-8 border-b" style={{ borderColor: 'var(--rule)' }}>
+        <span className="meta">Portfolio — Vol. 04</span>
+        <span className="meta">2026</span>
+      </div>
 
-        {/* ── Text column ── */}
+      {/* ── Headline ── */}
+      <h1 className="display display-xl">
+        <MaskLine delay={0.05}>Software</MaskLine>
+        <MaskLine delay={0.15}>
+          Engineer
+          <span style={{ color: 'var(--signal)' }}>.</span>
+        </MaskLine>
+      </h1>
+
+      {/* ── Statement + portrait ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 mt-10 md:mt-14">
+        {/* Statement */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="order-2 lg:order-1 space-y-7"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:col-span-5 flex flex-col gap-10"
         >
-          <motion.p variants={itemVariants} className="text-sm font-mono tracking-widest uppercase" style={{ color: 'var(--accent-2)' }}>
-            Hello, I&apos;m
-          </motion.p>
+          <p className="lead" style={{ maxWidth: '34ch' }}>
+            I build AI systems that reach production — agent orchestration, retrieval
+            pipelines and the full-stack products they live inside.
+          </p>
 
-          <motion.div variants={itemVariants} style={{ y: headlineY }}>
-            <h1
-              className="text-6xl sm:text-7xl lg:text-8xl font-display font-extrabold leading-none tracking-tight"
-              style={{ color: 'var(--text-primary)' }}
-            >
-              Keshav
-            </h1>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="flex items-center gap-3 h-10">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={roleIdx}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.35 }}
-                className="text-xl sm:text-2xl font-display font-semibold"
-                style={{ color: 'var(--accent-1)' }}
-              >
-                {ROLES[roleIdx]}
-              </motion.span>
-            </AnimatePresence>
-            <span className="text-2xl animate-cursor-blink" style={{ color: 'var(--accent-1)' }}>|</span>
-          </motion.div>
-
-          <motion.p variants={itemVariants} className="text-base max-w-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-            Passionate full-stack developer with 3+ years building scalable web apps and AI-powered systems.
-            I bridge pixel-perfect UIs with intelligent backends — from React frontends to PyTorch models.
-          </motion.p>
-
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-2">
-            <a href="#Projects" className="btn-accent">View Work</a>
-            <a
-              href="https://drive.google.com/file/d/1SATFVM6n0HEzkzD0hKsBsEPEj4jhz3E5/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-glass"
-            >
-              Resume ↗
+          <div className="flex flex-wrap gap-3">
+            <a href="#Projects" className="btn-fill">
+              Selected Work <span aria-hidden>↓</span>
             </a>
-          </motion.div>
+            <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="btn-line">
+              Resume <span aria-hidden>↗</span>
+            </a>
+          </div>
         </motion.div>
 
-        {/* ── Portrait column ── */}
+        {/* Facts ledger */}
+        <motion.dl
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.55 }}
+          className="lg:col-span-3 self-end"
+        >
+          {FACTS.map(([label, value], i) => (
+            <div
+              key={label}
+              className="flex items-baseline justify-between gap-4 py-2.5 border-t"
+              style={{ borderColor: 'var(--rule)' }}
+            >
+              <dt className="meta">{label}</dt>
+              <dd className="meta meta-ink flex items-center gap-2">
+                {i === 0 && (
+                  <span
+                    className="inline-block w-1.5 h-1.5 rounded-full"
+                    style={{ background: 'var(--signal)' }}
+                    aria-hidden
+                  />
+                )}
+                {value}
+              </dd>
+            </div>
+          ))}
+        </motion.dl>
+
+        {/* Portrait — hard rectangle, duotone */}
         <motion.div
-          initial={{ opacity: 0, x: 48 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="order-1 lg:order-2 flex justify-center lg:justify-end"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="lg:col-span-4 order-first lg:order-last"
           style={{ y: portraitY }}
         >
-          <div className="relative">
-            {/* Floating particles */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
-              {PARTICLES.map(p => (
-                <span
-                  key={p.id}
-                  className="absolute rounded-full opacity-50"
-                  style={{
-                    left: p.left,
-                    bottom: 0,
-                    width: p.size,
-                    height: p.size,
-                    background: 'var(--accent-1)',
-                    animation: `float ${p.duration}s ease-in-out ${p.delay}s infinite`,
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* Portrait card */}
-            <Glass
-              intensity="lg"
-              className="relative p-3 animate-float"
-              style={{ borderRadius: '40% 60% 60% 40% / 50% 50% 50% 50%', animation: 'blobMorph 8s ease-in-out infinite, float 6s ease-in-out infinite' }}
-            >
-              <img
-                src={profilepic}
-                alt="Keshav Sharma"
-                className="w-72 h-72 sm:w-96 sm:h-96 object-cover"
-                style={{ borderRadius: '38% 62% 58% 42% / 48% 52% 48% 52%', animation: 'blobMorph 8s ease-in-out infinite' }}
-              />
-            </Glass>
-
-            {/* Glow orb behind portrait */}
-            <div
-              className="absolute -inset-8 -z-10 blur-3xl opacity-30 rounded-full"
-              style={{ background: `radial-gradient(circle, var(--accent-1), transparent 70%)` }}
-              aria-hidden
+          <figure className="relative group">
+            <img
+              src={profilepic}
+              alt="Keshav Sharma"
+              fetchPriority="high"
+              decoding="async"
+              className="media-tone w-full h-[300px] sm:h-[380px] lg:h-[440px] object-cover object-top"
+              style={{ border: '1px solid var(--ink)' }}
             />
-          </div>
+            <figcaption
+              className="meta absolute -bottom-6 right-0"
+              aria-hidden
+            >
+              Fig. 01 — the engineer
+            </figcaption>
+          </figure>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.a
-        href="#About_me"
-        onClick={(e) => { e.preventDefault(); document.getElementById('About_me')?.scrollIntoView({ behavior: 'smooth' }); }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        style={{ color: 'var(--text-muted)' }}
-        aria-label="Scroll down"
-      >
-        <span className="text-xs font-mono tracking-widest uppercase">Scroll</span>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.6 }}>
-          ↓
-        </motion.div>
-      </motion.a>
+      {/* ── Keyword strip ── */}
+      <div className="mt-20 md:mt-28">
+        <Marquee items={KEYWORDS} />
+      </div>
     </section>
   );
 }

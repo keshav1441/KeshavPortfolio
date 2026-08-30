@@ -12,10 +12,11 @@ import { ThemeSwitcher } from './components/ui/ThemeSwitcher';
 const App = () => {
   return (
     <MotionConfig reducedMotion="user">
-      <div className="overflow-x-hidden antialiased" style={{ color: 'var(--text-primary)', background: 'var(--bg-primary)' }}>
-        <div className="bg-mesh" aria-hidden="true" />
+      <div className="antialiased" style={{ color: 'var(--ink)', background: 'var(--ground)' }}>
+        {/* Only paints in the Blueprint theme; --grid is transparent elsewhere */}
+        <div className="grid-overlay" aria-hidden="true" />
         <Navbar />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <main className="page relative" style={{ zIndex: 1 }}>
           <Hero />
           <About_me />
           <Technologies />

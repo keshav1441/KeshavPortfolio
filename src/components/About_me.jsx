@@ -1,153 +1,131 @@
-import { motion } from 'framer-motion';
 import aboutImg from '../assets/aboutkeshav.jpg';
-import { Glass } from './ui/Glass';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode, faServer, faRobot, faDatabase } from '@fortawesome/free-solid-svg-icons';
+import { RunningHead, Fade, MaskLine } from './ui/Editorial';
 
-const KEY_AREAS = [
+const PROFILE = [
+  ['Education', 'B.Tech Computer Science — IIIT Pune'],
+  ['Current',   'Software Engineer, AI Assistant'],
+  ['Location',  'Pune, Maharashtra, India'],
+  ['Working',   'Agentic AI, RAG, multi-tenant platforms'],
+  ['Also',      'Computer vision, PyTorch, data pipelines'],
+];
+
+const PRACTICE = [
   {
-    icon: faCode,
+    num: '01',
     title: 'Frontend',
-    desc: 'Responsive, interactive UIs with React, Tailwind CSS, and modern JavaScript.',
+    desc: 'React, Next.js and React Native interfaces built to a design system rather than a template.',
   },
   {
-    icon: faServer,
+    num: '02',
     title: 'Backend',
-    desc: 'Robust APIs with Node.js, FastAPI, and Express. Scalable server architecture.',
+    desc: 'FastAPI, Node and .NET services — auth, schema design, and APIs that hold up under real traffic.',
   },
   {
-    icon: faRobot,
-    title: 'AI & ML',
-    desc: 'Intelligent solutions using TensorFlow, PyTorch, LangChain, and RAG pipelines.',
+    num: '03',
+    title: 'AI Systems',
+    desc: 'Agent orchestration, retrieval pipelines, evaluation loops. Models wired into products, not notebooks.',
   },
   {
-    icon: faDatabase,
-    title: 'Databases',
-    desc: 'SQL & NoSQL expertise across MySQL, PostgreSQL, and MongoDB.',
+    num: '04',
+    title: 'Data',
+    desc: 'Postgres, MongoDB and vector stores; scrapers and ETL that keep the index fresh.',
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
-};
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
 export default function About() {
   return (
-    <section id="About_me" className="pt-20">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6 }}
-        className="text-3xl md:text-4xl font-display font-bold text-center mb-4"
-        style={{ color: 'var(--text-primary)' }}
-      >
-        About <span className="accent-text">Me</span>
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-center max-w-xl mx-auto mb-16 text-sm"
-        style={{ color: 'var(--text-muted)' }}
-      >
-        Background, skills, and what drives me as a developer
-      </motion.p>
+    <section id="About_me" className="pt-24 md:pt-32">
+      <RunningHead index="02" title="Profile" meta="Who is writing this" />
 
-      {/* Bio + photo row */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center mb-20">
-        {/* Photo */}
-        <motion.div
-          initial={{ opacity: 0, x: -48 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
-          className="flex justify-center lg:col-span-2"
-        >
-          <div className="relative">
-            <Glass
-              className="p-2"
-              style={{ transform: 'rotate(-3deg)', display: 'inline-block' }}
-            >
-              <img
-                src={aboutImg}
-                alt="Keshav Sharma"
-                className="rounded-xl w-64 h-auto object-cover"
-              />
-            </Glass>
-            <div
-              className="absolute -inset-4 -z-10 blur-2xl opacity-20 rounded-full"
-              style={{ background: `radial-gradient(circle, var(--accent-3), transparent 70%)` }}
-              aria-hidden
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        {/* Lead statement */}
+        <div className="lg:col-span-7">
+          <h2 className="display display-lg mb-8">
+            <MaskLine>Ships</MaskLine>
+            <MaskLine delay={0.08}>the whole</MaskLine>
+            <MaskLine delay={0.16}>system<span style={{ color: 'var(--signal)' }}>.</span></MaskLine>
+          </h2>
+
+          <Fade delay={0.1}>
+            <p className="lead mb-6" style={{ maxWidth: '52ch' }}>
+              I&apos;m a software engineer at AI Assistant, where I ship production features
+              for a multi-tenant medicine commerce platform and build the AI tooling around
+              it — resume ranking, voice interviews, a job index scraped from a thousand
+              career pages.
+            </p>
+            <p className="mb-6" style={{ color: 'var(--ink-soft)', maxWidth: '58ch' }}>
+              Before that: three years of building things end to end while finishing a
+              computer science degree at IIIT Pune. The pattern hasn&apos;t changed — I like
+              the part where a model or an API stops being a demo and starts being something
+              people depend on.
+            </p>
+            <p style={{ color: 'var(--ink-soft)', maxWidth: '58ch' }}>
+              Twenty-odd projects sit in the index below. The ones I&apos;m proudest of are
+              the ones where the hard part was never the model.
+            </p>
+          </Fade>
+
+          <Fade delay={0.2} className="mt-10">
+            <a href="#Contact" className="btn-line">
+              Get in touch <span aria-hidden>→</span>
+            </a>
+          </Fade>
+        </div>
+
+        {/* Portrait + ledger */}
+        <div className="lg:col-span-5">
+          <Fade>
+            <img
+              src={aboutImg}
+              alt="Keshav Sharma"
+              loading="lazy"
+              decoding="async"
+              className="media-tone w-full h-[280px] sm:h-[340px] object-cover object-[50%_25%] mb-6"
+              style={{ border: '1px solid var(--ink)' }}
             />
-          </div>
-        </motion.div>
+          </Fade>
 
-        {/* Text */}
-        <motion.div
-          initial={{ opacity: 0, x: 48 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-5 lg:col-span-3"
-          style={{ color: 'var(--text-primary)' }}
-        >
-          <p className="text-base leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-            I&apos;m pursuing my Bachelor&apos;s in Computer Science Engineering at the Indian Institute of
-            Information Technology, Pune. As a passionate Full Stack Developer with expertise in Python
-            and AI, I&apos;ve built strong skills across React.js, Node.js, FastAPI, MySQL, and MongoDB.
-          </p>
-          <p className="text-base leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-            Over the past 3 years, I&apos;ve focused on building scalable, high-performance web applications
-            and leveraging AI to deliver cutting-edge features — from intelligent chatbots to computer
-            vision systems that operate at scale.
-          </p>
-          <p className="text-base leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-            Alongside web development, I work with TensorFlow and PyTorch for data-driven solutions.
-            I continually explore new tools to stay ahead in the field.
-          </p>
-          <div className="pt-2">
-            <a href="#Contact" className="btn-accent">Get In Touch</a>
-          </div>
-        </motion.div>
+          <Fade delay={0.1} as="dl">
+            {PROFILE.map(([label, value]) => (
+              <div
+                key={label}
+                className="grid grid-cols-[7rem_1fr] gap-4 py-2.5 border-t"
+                style={{ borderColor: 'var(--rule)' }}
+              >
+                <dt className="meta">{label}</dt>
+                <dd className="text-sm" style={{ color: 'var(--ink)' }}>{value}</dd>
+              </div>
+            ))}
+          </Fade>
+        </div>
       </div>
 
-      {/* Key areas */}
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <h3 className="text-2xl font-display font-semibold text-center mb-10" style={{ color: 'var(--text-primary)' }}>
-          Key <span className="accent-text">Areas</span>
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {KEY_AREAS.map((area) => (
-            <motion.div key={area.title} variants={fadeUp}>
-              <Glass
-                className="p-6 flex flex-col items-center text-center h-full cursor-default transition-transform duration-200 hover:scale-[1.04]"
-              >
-                <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center mb-4 text-xl"
-                  style={{ background: 'rgba(var(--accent-1-rgb, 0,255,224), 0.1)', color: 'var(--accent-1)' }}
-                >
-                  <FontAwesomeIcon icon={area.icon} style={{ color: 'var(--accent-1)' }} />
-                </div>
-                <h4 className="font-display font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{area.title}</h4>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>{area.desc}</p>
-              </Glass>
-            </motion.div>
+      {/* Practice areas */}
+      <div className="mt-20 md:mt-28">
+        <div className="flex items-baseline gap-4 pb-3 mb-0 border-b" style={{ borderColor: 'var(--rule-strong)' }}>
+          <span className="meta meta-ink">Practice</span>
+          <span className="flex-1 h-px translate-y-[-3px]" style={{ background: 'var(--rule)' }} aria-hidden />
+          <span className="meta">04 areas</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          {PRACTICE.map(({ num, title, desc }, i) => (
+            <Fade
+              key={title}
+              delay={i * 0.06}
+              className="invert-row p-6 border-b lg:border-r"
+              style={{
+                borderColor: 'var(--rule)',
+                ...(i === PRACTICE.length - 1 ? { borderRightWidth: 0 } : {}),
+              }}
+            >
+              <span className="meta block mb-6" style={{ color: 'var(--signal)' }}>{num}</span>
+              <h3 className="display text-xl md:text-2xl mb-3">{title}</h3>
+              <p className="text-sm soft">{desc}</p>
+            </Fade>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
