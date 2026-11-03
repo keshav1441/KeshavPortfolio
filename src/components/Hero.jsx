@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import profilepic from '../assets/Herophoto.jpg';
 import { MaskLine, Marquee } from './ui/Editorial';
 
-const RESUME_URL = 'https://drive.google.com/file/d/1q8BZW8x0yd15ZjupDxx-pX3EWU1AO650/view?usp=sharing';
+const RESUME_URL = 'https://drive.google.com/file/d/1RH2h5AyXlOd7js6JNPkikzZMWb71f7fu/view?usp=sharing';
 
 const FACTS = [
   ['Status',   'Open to work'],
