@@ -49,9 +49,10 @@ export default function About() {
           <Fade delay={0.1}>
             <p className="lead mb-6" style={{ maxWidth: '52ch' }}>
               I&apos;m a software engineer at AI Assistant, where I ship production features
-              for a multi-tenant medicine commerce platform and build the AI tooling around
-              it — resume ranking, voice interviews, a job index scraped from a thousand
-              career pages.
+              for a multi-tenant pharmacy commerce platform and its telehealth prescription
+              flow, plus an AI HR platform for resume ranking and voice interviews. I
+              started there as an intern building AI agents — lead generation with CRM
+              automation, and a job portal indexing 100K+ jobs from 1,500+ career pages.
             </p>
             <p className="mb-6" style={{ color: 'var(--ink-soft)', maxWidth: '58ch' }}>
               Before that: three years of building things end to end while finishing a
