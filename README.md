@@ -1,36 +1,81 @@
-# Keshav Sharma - Portfolio
+# Keshav Sharma — Portfolio
 
+Personal site for Keshav Sharma, software engineer. It is laid out like an editorial index: a profile, the stack, a work record, and an index of 18 projects you can filter by area.
 
-[Visit Keshav Sharma's Portfolio](https://keshav-portfolio-kt3b.vercel.app/)
+**Live:** https://keshav-portfolio-kt3b.vercel.app/ · [Resume](https://drive.google.com/file/d/1RH2h5AyXlOd7js6JNPkikzZMWb71f7fu/view?usp=sharing) · [LinkedIn](https://www.linkedin.com/in/keshav-sharma-40284b253/) · [GitHub](https://github.com/keshav1441)
 
-Welcome to my personal portfolio website! This site showcases my skills, projects, and experience as a Full-Stack Developer with a focus on Python, AI, and modern web technologies. It includes a collection of my personal and professional projects, the technologies I work with, and my journey in the world of software development.
+![Portfolio home](docs/screenshots/home.jpg)
 
-## Table of Contents
+## Sections
 
-- [Technologies Used](#technologies-used)
-- [Features](#features)
-- [Deployed Portfolio](#deployed-portfolio)
+| # | Section | Component | What it shows |
+|---|---|---|---|
+| 01 | Index | `Hero.jsx` | Headline, status panel, resume link |
+| 02 | Profile | `About_me.jsx` | Short bio and focus areas |
+| 03 | Stack | `Technologies.jsx` | Languages, frontend, backend, data, AI/ML and platform tools |
+| 04 | Record | `Experience.jsx` | Roles, each expanding to its bullets and tech |
+| 05 | Work | `Project.jsx` | Project index with category filters, links to code and live demos |
+| 06 | Contact | `Contact.jsx` | Contact form (Getform) and social links |
 
-## Technologies Used
+## Architecture
 
-This portfolio is built using a combination of the following technologies:
+```mermaid
+flowchart LR
+    main[main.jsx] --> Lenis[LenisProvider<br/>smooth scroll]
+    Lenis --> App[App.jsx]
+    App --> Nav[Navbar]
+    App --> Sections[Hero · About · Stack · Experience · Projects · Contact]
+    App --> Footer
+    Sections --> UI[ui/Editorial<br/>RunningHead · Fade]
+    App --> Theme[useTheme<br/>ink · void · blueprint · riso]
+    Sections -->|form submit| Getform[(Getform)]
+```
 
-- **React.js**: A JavaScript library for building user interfaces.
-- **Tailwind CSS**: A utility-first CSS framework for creating custom designs.
-- **Framer Motion**: A library for animations in React.
-- **React Icons**: A library to use popular icons in React applications.
-- **Vercel**: Used for deploying the portfolio website.
+It is a static single-page app with no backend. All content, including roles and projects, is plain data at the top of each component, so updating the site means editing one array. Smooth scrolling comes from Lenis, entrance animations from Framer Motion, and `useTheme` switches between four themes (Ink, Void, Blueprint, Riso), defaulting to the OS light or dark preference and remembering the choice in `localStorage`.
 
-## Features
+```
+src/
+├── App.jsx, main.jsx, index.css
+├── components/        # one file per section, plus Navbar and Footer
+│   └── ui/            # shared editorial primitives (RunningHead, Fade)
+├── context/           # LenisContext (smooth-scroll provider)
+├── hooks/             # useTheme
+├── lib/               # scroll helpers
+├── styles/            # themes.css
+└── assets/            # project images
+scripts/optimize-images.mjs   # one-off image compression
+```
 
-- **Responsive Design**: Fully responsive layout optimized for desktop, tablet, and mobile devices.
-- **Project Showcase**: Display of various projects with descriptions, technologies used, and timelines.
-- **Technology Stack Section**: Icons and descriptions of the main technologies I work with.
-- **Smooth Animations**: Framer Motion is used to create smooth transitions and animations across the site.
-- **Contact Information**: Contact details to get in touch with me for potential collaborations or job opportunities.
+## Tech stack
 
-## Deployed Portfolio
+| Layer | Technology |
+|---|---|
+| UI | React 18, Tailwind CSS |
+| Motion | Framer Motion, Lenis |
+| Build | Vite |
+| Forms | Getform |
+| Hosting | Vercel |
 
-You can view the live version of my portfolio here:
+## Running locally
 
-[Visit Keshav Sharma's Portfolio](https://keshav-portfolio-kt3b.vercel.app/)
+Requires Node.js 18 or later.
+
+```bash
+npm install
+npm run dev       # http://localhost:5173
+npm run build     # production build into dist/
+npm run preview   # serve the production build
+npm run lint
+```
+
+No environment variables are needed.
+
+## Updating content
+
+- **Roles:** edit `EXPERIENCES` in `src/components/Experience.jsx`.
+- **Projects:** edit the project array in `src/components/Project.jsx`. Leave out `demo` when a project has no live deployment.
+- **Resume link:** `RESUME_URL` in `src/components/Hero.jsx`.
+
+---
+
+Built by [Keshav Sharma](https://github.com/keshav1441)
